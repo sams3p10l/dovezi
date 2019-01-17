@@ -8,7 +8,7 @@ public class Admin extends User
     {
     }
 
-    public Admin(String username, String password, String name, String surname, enums.Roles uloga, String phone, String email)
+    public Admin(String username, String password, String name, String surname, String uloga, String phone, String email)
     {
         super(username, password, name, surname, uloga, phone, email);
     }

@@ -105,9 +105,9 @@ public class User
         this.surname = surname;
     }
 
-    public Roles getUloga()
+    public String getUloga()
     {
-        return uloga;
+        return uloga.toString();
     }
 
     public void setUloga(Roles uloga)
