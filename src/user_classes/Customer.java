@@ -6,16 +6,16 @@ import model_classes.enums;
 
 import java.util.ArrayList;
 
-public class Kupac extends User
+public class Customer extends User
 {
     private ArrayList<Order> orderList;
     private ArrayList<Restaurant> restaurantList;
 
-    public Kupac()
+    public Customer()
     {
     }
 
-    public Kupac(String username, String password, String name, String surname, enums.Roles uloga, String phone, String email, ArrayList<Order> orderList, ArrayList<Restaurant> restaurantList)
+    public Customer(String username, String password, String name, String surname, String uloga, String phone, String email, ArrayList<Order> orderList, ArrayList<Restaurant> restaurantList)
     {
         super(username, password, name, surname, uloga, phone, email);
         this.orderList = orderList;

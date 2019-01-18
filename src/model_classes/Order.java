@@ -3,15 +3,15 @@ package model_classes;
 import java.util.Date;
 import java.util.HashMap;
 import model_classes.enums.Statuses;
-import user_classes.Dostavljac;
-import user_classes.Kupac;
+import user_classes.Deliverer;
+import user_classes.Customer;
 
 public class Order
 {
     private HashMap<Artikal, Integer> stavka;
     private Date timestamp;
-    private Kupac kupac;
-    private Dostavljac dostavljac;
+    private Customer customer;
+    private Deliverer deliverer;
     private String napomena;
     private Statuses status;
 
@@ -46,24 +46,24 @@ public class Order
         this.timestamp = timestamp;
     }
 
-    public Kupac getKupac()
+    public Customer getCustomer()
     {
-        return kupac;
+        return customer;
     }
 
-    public void setKupac(Kupac kupac)
+    public void setCustomer(Customer customer)
     {
-        this.kupac = kupac;
+        this.customer = customer;
     }
 
-    public Dostavljac getDostavljac()
+    public Deliverer getDeliverer()
     {
-        return dostavljac;
+        return deliverer;
     }
 
-    public void setDostavljac(Dostavljac dostavljac)
+    public void setDeliverer(Deliverer deliverer)
     {
-        this.dostavljac = dostavljac;
+        this.deliverer = deliverer;
     }
 
     public String getNapomena()

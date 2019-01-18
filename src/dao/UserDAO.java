@@ -1,83 +1,84 @@
 package dao;
 
+
+import loadnsave.UserLoader;
 import user_classes.User;
 
-import java.io.*;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class UserDAO
 {
-    private static Map<String, User> users = new HashMap<>();
+    private UserLoader userLoader = new UserLoader();
 
     public UserDAO() {}
 
-    public UserDAO(String contextPath)
+//    private void loadUsers(String contextPath)
+//    {
+//        BufferedReader in;
+//
+//        try {
+//            File file = new File(contextPath + "/users.txt");
+//            in = new BufferedReader(new FileReader(file));
+//            String line;
+//            StringTokenizer stringTokenizer;
+//
+//            while ((line = in.readLine()) != null)
+//            {
+//                line = line.trim();
+//
+//                if (line.equals("") || line.indexOf('#') == 0)
+//                    continue;
+//
+//                stringTokenizer = new StringTokenizer(line, ";");
+//
+//                while (stringTokenizer.hasMoreTokens())
+//                {
+//                    /* check this data order later */
+//                    String username = stringTokenizer.nextToken().trim();
+//                    String password = stringTokenizer.nextToken().trim();
+//                    String firstName = stringTokenizer.nextToken().trim();
+//                    String lastName = stringTokenizer.nextToken().trim();
+//                    String role = stringTokenizer.nextToken().trim();
+//                    String phone = stringTokenizer.nextToken().trim();
+//                    String email = stringTokenizer.nextToken().trim();
+//                    String date = stringTokenizer.nextToken().trim();
+//
+//                    users.put(username, new User(username, password, firstName, lastName, role, phone, email, date));
+//                }
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public boolean findUser(String username)
     {
-        loadUsers(contextPath);
+        return userLoader.getUsers().containsKey(username);
     }
 
-    private void loadUsers(String contextPath)
+    public void addUser(User pUser)
     {
-        BufferedReader in;
+        if(pUser != null)
+            userLoader.getUsers().put(pUser.getUsername(), pUser);
 
-        try {
-            File file = new File(contextPath + "/users.txt");
-            in = new BufferedReader(new FileReader(file));
-            String line;
-            StringTokenizer stringTokenizer;
-
-            while ((line = in.readLine()) != null)
-            {
-                line = line.trim();
-
-                if (line.equals("") || line.indexOf('#') == 0)
-                    continue;
-
-                stringTokenizer = new StringTokenizer(line, ";");
-
-                while (stringTokenizer.hasMoreTokens())
-                {
-                    /* check this data order later */
-                    String username = stringTokenizer.nextToken().trim();
-                    String password = stringTokenizer.nextToken().trim();
-                    String firstName = stringTokenizer.nextToken().trim();
-                    String lastName = stringTokenizer.nextToken().trim();
-                    String role = stringTokenizer.nextToken().trim();
-                    String phone = stringTokenizer.nextToken().trim();
-                    String email = stringTokenizer.nextToken().trim();
-                    String date = stringTokenizer.nextToken().trim();
-
-                    users.put(username, new User(username, password, firstName, lastName, role, phone, email, date));
-                }
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //TODO: role check
     }
 
-    public User find(String username, String password)
+    public User getUser(String username)
     {
-        if (!users.containsKey(username))
-            return null;
+        if (userLoader.getUsers().containsKey(username))
+            return userLoader.getUsers().get(username);
 
-        User user = users.get(username);
-
-        if (!user.getPassword().equals(password))
-            return null;
-
-        return user;
-    }
-
-    public Collection<User> findAll() {
-        return users.values();
+        return null;
     }
 
     public Map getUsers()
     {
-        return users;
+        return userLoader.getUsers();
+    }
+
+    public Collection<User> getAllUserObj() {
+        return userLoader.getUsers().values();
     }
 }
