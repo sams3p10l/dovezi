@@ -1,0 +1,32 @@
+<div class="container">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <a href="#/" class="navbar-brand">Dovezi</a>
+
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div ng-show="notLoggedFlag">
+            <div class="collapse navbar-collapse navHeaderCollapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/restoran">Restorani</a></li>
+                    <li><a href="#/login">Prijava</a></li>
+                    <li><a href="#/registration">Registracija</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div ng-show="loggedFlag">
+            <div class="collapse navbar-collapse navHeaderCollapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/restoran">Restorani</a></li>
+                    <li><a href="" ng-click="goToProfile()">Profil: {{user.username}}</a></li>
+                    <li><a href="" ng-click="logout()">Odjava</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

@@ -8,16 +8,17 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
 
   <body>
-    <p>
-      KURCINA
-    </p>
+    <div ng-view></div>
 
-    <div ng-app="">
-      <pre>{{5+6}}</pre>
-    </div>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/LoginController.js"></script>
+
+    <script src="app/services/userService.js"></script>
 
   </body>
 </html>

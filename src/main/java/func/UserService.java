@@ -21,9 +21,9 @@ public class UserService
     @Context
     HttpServletRequest request;
 
-    public UserService(){}
-
     private UserDAO userDAO = new UserDAO();
+
+    public UserService(){}
 
     @POST
     @Path("/register")
