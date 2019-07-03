@@ -1,5 +1,6 @@
 package loadnsave;
 
+import model_classes.enums;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -30,7 +31,11 @@ public class UserLoader //loading and parsing data from json
     public UserLoader()
     {
         loadAdmins();
-        loadCustomers();
+        try {
+            loadCustomers();
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
         loadDeliverers();
     }
 
@@ -38,46 +43,44 @@ public class UserLoader //loading and parsing data from json
     {
         JSONParser parser = new JSONParser();
 
-        try {
 
-            JSONArray jsonArray = (JSONArray) parser.parse
-                    (new FileReader("E:\\Misa\\Docs\\Web\\dovezi2\\web\\data"));
+        JSONArray jsonArray = (JSONArray) parser.parse
+                (new FileReader("E:\\Misa\\Docs\\ispiti\\Web\\dovezi2\\web\\data\\customers.json"));
 
-            for (Object obj : jsonArray)
-            {
-                JSONObject jsonObject = (JSONObject) obj;
+        for (Object obj : jsonArray)
+        {
+            JSONObject jsonObject = (JSONObject) obj;
 
-                String username = (String) jsonObject.get("username");
-                String password = (String) jsonObject.get("password");
-                String firstName = (String) jsonObject.get("firstname");
-                String lastName = (String) jsonObject.get("lastname");
-                String role = (String) jsonObject.get("role"); //cemu?
-                String phone = (String) jsonObject.get("phone");
-                String email = (String) jsonObject.get("email");
-                String regDate = (String) jsonObject.get("regdate");
-                int points = Integer.parseInt((String) jsonObject.get("points"));
-                JSONArray userOrders = (JSONArray) jsonObject.get("orderList");
-                JSONArray userRestaurants = (JSONArray) jsonObject.get("restaurantList");
+            String username = (String) jsonObject.get("username");
+            String password = (String) jsonObject.get("password");
+            String firstName = (String) jsonObject.get("firstname");
+            String lastName = (String) jsonObject.get("lastname");
+            String phone = (String) jsonObject.get("phone");
+            String email = (String) jsonObject.get("email");
+            String regDate = (String) jsonObject.get("regdate");
+            JSONArray userOrderIDs = (JSONArray) jsonObject.get("orderList");
+            JSONArray userRestaurantIDs = (JSONArray) jsonObject.get("restaurantList");
 
-                ArrayList<String> orderList = new ArrayList<String>();
-                for (Object userOrder : userOrders) {
-                    orderList.add((String) userOrder);
-                }
+            int points = Integer.parseInt((String) jsonObject.get("points"));
+            String role = enums.Roles.KUPAC.name();
 
-                ArrayList<String> restaurantList = new ArrayList<String>();
-                for (Object userRestaurant : userRestaurants) {
-                    restaurantList.add((String) userRestaurant);
-                }
-
-                User userCustomer = new User(username, password, firstName, lastName, role, phone,
-                                                                email, regDate);
-                allUsers.put(userCustomer.getUsername(), userCustomer);
-
-                Customer newCustomer = new Customer(username, password, firstName, lastName, role, phone,
-                                                                email, orderList, restaurantList);
-                customers.add(newCustomer);
-
+            ArrayList<String> orderList = new ArrayList<String>();
+            for (Object userOrder : userOrderIDs) {
+                orderList.add((String) userOrder);
             }
+
+            ArrayList<String> restaurantList = new ArrayList<String>();
+            for (Object userRestaurant : userRestaurantIDs) {
+                restaurantList.add((String) userRestaurant);
+            }
+
+            User userCustomer = new User(username, password, firstName, lastName, role, phone, //to the allUsers list
+                                                            email, regDate);
+            allUsers.put(userCustomer.getUsername(), userCustomer);
+
+            Customer newCustomer = new Customer(username, password, firstName, lastName, role, phone, //to the allCustomers list
+                                                            email, orderList, restaurantList, points);
+            customers.add(newCustomer);
 
         }
 

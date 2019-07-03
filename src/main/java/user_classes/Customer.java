@@ -8,37 +8,51 @@ import java.util.ArrayList;
 
 public class Customer extends User
 {
-    private ArrayList<Order> orderList;
-    private ArrayList<Restaurant> restaurantList;
+    private ArrayList<String> orderIDList;
+    private ArrayList<String> restaurantIDList;
+    private int userPoints;
 
     public Customer()
     {
     }
 
-    public Customer(String username, String password, String name, String surname, String uloga, String phone, String email, ArrayList<Order> orderList, ArrayList<Restaurant> restaurantList)
+    public Customer(String username, String password, String name, String surname,
+                    String uloga, String phone, String email,
+                    ArrayList<String> orderList, ArrayList<String> restaurantList, int pts)
     {
         super(username, password, name, surname, uloga, phone, email);
-        this.orderList = orderList;
-        this.restaurantList = restaurantList;
+        this.orderIDList = orderList;
+        this.restaurantIDList = restaurantList;
+        this.userPoints = pts;
     }
 
-    public ArrayList<Order> getOrderList()
+    public ArrayList<String> getOrderList()
     {
-        return orderList;
+        return orderIDList;
     }
 
-    public void setOrderList(ArrayList<Order> orderList)
+    public void setOrderList(ArrayList<String> orderList)
     {
-        this.orderList = orderList;
+        this.orderIDList = orderList;
     }
 
-    public ArrayList<Restaurant> getRestaurantList()
+    public ArrayList<String> getRestaurantList()
     {
-        return restaurantList;
+        return restaurantIDList;
     }
 
-    public void setRestaurantList(ArrayList<Restaurant> restaurantList)
+    public void setRestaurantList(ArrayList<String> restaurantList)
     {
-        this.restaurantList = restaurantList;
+        this.restaurantIDList = restaurantList;
+    }
+
+    public int getUserPoints()
+    {
+        return userPoints;
+    }
+
+    public void setUserPoints(int userPoints)
+    {
+        this.userPoints = userPoints;
     }
 }

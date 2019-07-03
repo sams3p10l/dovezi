@@ -1,9 +1,13 @@
 package user_classes;
 
+import model_classes.enums;
 import model_classes.enums.Roles;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import static model_classes.enums.Roles;
 
 public class User
 {
@@ -18,6 +22,14 @@ public class User
 
     public User()
     {
+        this.username = "";
+        this.password = "";
+        this.name = "";
+        this.surname = "";
+        this.uloga = Roles.KUPAC;
+        this.phone = "";
+        this.email = "";
+        this.regDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     /*for registration*/
@@ -50,15 +62,12 @@ public class User
     {
         if (uloga.equals("KUPAC") || uloga.equals("DOSTAVLJAC") || uloga.equals("ADMINISTRATOR"))
         {
-            switch (uloga)
-            {
-                case "KUPAC":
-                    return Roles.KUPAC;
-                case "DOSTAVLJAC":
-                    return Roles.DOSTAVLJAC;
-                case "ADMINISTRATOR":
-                    return Roles.ADMINISTRATOR;
-            }
+            if (uloga.equals("KUPAC"))
+                return Roles.KUPAC;
+            if (uloga.equals("DOSTAVLJAC"))
+                return Roles.DOSTAVLJAC;
+
+            return Roles.ADMINISTRATOR;
         }
 
         return null;
