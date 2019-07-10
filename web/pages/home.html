@@ -1,6 +1,4 @@
-<link href = "../css/home_st.css" rel="stylesheet">
-
-<nav class="navbar navbar-expand-md navbar-dark navbar-inverse bg-dark fixed-top" role="navigation">
+<nav class="navbar navbar-expand-md navbar-dark navbar-inverse bg-faded fixed-top" role="navigation" style="background-color: rgba(255, 255, 255, 0.3)">
 
     <div class="container">
 
@@ -14,17 +12,17 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#/restoran">
+                        <a class="nav-link" href="#/restoran" style="color: rgba(255, 255, 255, 0.9)">
                             Restorani
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#/login">
+                        <a class="nav-link" href="#/login" style="color: rgba(255, 255, 255, 0.9)">
                             Prijava
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#/registration">
+                        <a class="nav-link" href="#/registration" style="color: rgba(255, 255, 255, 0.9)">
                             Registracija
                         </a>
                     </li>
@@ -36,18 +34,18 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#/restoran">
+                        <a class="nav-link" href="#/restoran" style="color: rgba(255, 255, 255, 0.9)">
                             Restorani
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="" ng-click="goToProfile()">
+                        <a class="nav-link" href="" ng-click="goToProfile()" style="color: rgba(255, 255, 255, 0.9)">
                             Profil: {{user.username}}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="" ng-click="logout()">
+                        <a class="nav-link" href="" ng-click="logout()" style="color: rgba(255, 255, 255, 0.9)">
                             Odjava
                         </a>
                     </li>
@@ -58,7 +56,11 @@
 
 </nav>
 
-<header class = "text-white" style="padding: 250px; background-image: url(http://foodyclub.rs/img/menu.webp)">
+<header class = "text-white" style="padding: 250px;
+                             background-image: url(http://foodyclub.rs/img/menu.webp);
+                             background-repeat: no-repeat;
+                             background-position: top center;
+                             background-size: cover">
     <div class="container">
         <h1 class="text-center font-weight-bold">
             Naručite dostavu hrane
