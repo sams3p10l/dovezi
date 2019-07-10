@@ -10,11 +10,15 @@ dovezi2.config(['$routeProvider', '$locationProvider', function ($routeProvider,
         .when('/login', {
             controller: 'LoginController',
             templateUrl: 'pages/login.html'
+        })
+        .when('/registration', {
+            controller: 'RegisterController',
+            templateUrl: 'pages/register.html'
         });
-    console.log("poyy");
 }]);
+
+
 
 dovezi2.config(function ($logProvider) {
     $logProvider.debugEnabled(true)
-    console.log("poyy");
 });
