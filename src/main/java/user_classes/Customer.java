@@ -17,10 +17,10 @@ public class Customer extends User
     }
 
     public Customer(String username, String password, String name, String surname,
-                    String uloga, String phone, String email,
+                    String phone, String email,
                     ArrayList<String> orderList, ArrayList<String> restaurantList, int pts)
     {
-        super(username, password, name, surname, uloga, phone, email);
+        super(username, password, name, surname, phone, email);
         this.orderIDList = orderList;
         this.restaurantIDList = restaurantList;
         this.userPoints = pts;

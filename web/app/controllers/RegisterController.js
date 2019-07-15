@@ -8,7 +8,7 @@ dovezi2.controller('RegisterController', function ($scope, userService, $window)
         phone: '',
         email: ''
     };
-    
+
     $scope.registration = function (user) {
         user.username = user.username.toLowerCase();
 

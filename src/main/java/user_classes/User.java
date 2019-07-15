@@ -33,13 +33,13 @@ public class User
     }
 
     /*for registration*/
-    public User(String username, String password, String name, String surname, String uloga, String phone, String email)
+    public User(String username, String password, String name, String surname, String phone, String email)
     {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.uloga = string2role(uloga);
+        this.uloga = Roles.KUPAC;
         this.phone = phone;
         this.email = email;
         this.regDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -114,9 +114,9 @@ public class User
         this.surname = surname;
     }
 
-    public String getUloga()
+    public Roles getUloga()
     {
-        return uloga.toString();
+        return uloga;
     }
 
     public void setUloga(Roles uloga)

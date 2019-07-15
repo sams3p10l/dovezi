@@ -26,6 +26,6 @@ dovezi2.factory('userService', function ($http) {
 
     function register(user)
     {
-        return $http.post('../../../src/main/java/func/user/loggedUser', user);
+        return $http.post('../../../src/main/java/func/user/register', user);
     }
 });

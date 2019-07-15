@@ -30,6 +30,11 @@ public class UserLoader //loading and parsing data from json
 
     public UserLoader()
     {
+        loadAllUsers();
+    }
+
+    public void loadAllUsers()
+    {
         loadAdmins();
         try {
             loadCustomers();
@@ -78,7 +83,7 @@ public class UserLoader //loading and parsing data from json
                                                             email, regDate);
             allUsers.put(userCustomer.getUsername(), userCustomer);
 
-            Customer newCustomer = new Customer(username, password, firstName, lastName, role, phone, //to the allCustomers list
+            Customer newCustomer = new Customer(username, password, firstName, lastName, phone, //to the allCustomers list
                                                             email, orderList, restaurantList, points);
             customers.add(newCustomer);
 

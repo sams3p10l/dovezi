@@ -1,6 +1,7 @@
 package dao;
 
 import loadnsave.UserLoader;
+import loadnsave.UserSaver;
 import user_classes.User;
 
 import java.util.*;
@@ -8,6 +9,7 @@ import java.util.*;
 public class UserDAO
 {
     private UserLoader userLoader = new UserLoader();
+    private UserSaver userSaver = new UserSaver();
 
     public UserDAO() {}
 
@@ -22,6 +24,28 @@ public class UserDAO
             userLoader.getUsers().put(pUser.getUsername(), pUser);
 
         //TODO: role check
+
+        /*if(user.getUserFunction().equals(TypeOfUser.ADMINISTRATOR)){
+            Administrator newAdmin = changeToAdmin(user);
+            loadUsers.getListOfAdministrators().add(newAdmin);
+
+        }else if(user.getUserFunction().equals(TypeOfUser.DOSTAVLJAC)) {
+            Deliverer newDeliverer = changeToDeliverer(user);
+            loadUsers.getListOfDeliverers().add(newDeliverer);
+        }else if(user.getUserFunction().equals(TypeOfUser.KUPAC)){
+            Customer newCustomer = changeToCustomer(user);
+            loadUsers.getListOfCustomers().add(newCustomer);
+        }*/
+    }
+
+    public void saveUsers()
+    {
+        userSaver.save((ArrayList<User>) getAllUserObj());
+    }
+
+    public void loadUsers()
+    {
+        userLoader.loadAllUsers();
     }
 
     public User getUser(String username)

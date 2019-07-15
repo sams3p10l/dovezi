@@ -28,17 +28,19 @@ public class UserService
     @POST
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON) //check
+    @Produces(MediaType.TEXT_PLAIN) //check
     public Response register(User user)
     {
         if (userDAO.findUser(user.getUsername()))
             return Response.status(400).entity("User already exists").build();
 
         User newUser =  new User(user.getUsername(), user.getPassword(), user.getName(), user.getSurname()
-                                                    , user.getUloga(), user.getPhone(), user.getEmail());
+                                                            , user.getPhone(), user.getEmail());
         userDAO.addUser(newUser);
+        userDAO.saveUsers();
+        userDAO.loadUsers();
 
-        return Response.status(200).build();
+        return Response.status(200).entity("SVE OK").build();
     }
 
     @POST

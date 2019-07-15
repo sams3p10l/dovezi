@@ -17,9 +17,10 @@ public class Deliverer extends User
 
     public Deliverer(String username, String password, String name, String surname, String uloga, String phone, String email, Vehicle vozilo, ArrayList<Order> allocatedOrders)
     {
-        super(username, password, name, surname, uloga, phone, email);
+        super(username, password, name, surname, phone, email);
         this.vozilo = vozilo;
         this.allocatedOrders = allocatedOrders;
+        this.setUloga(enums.Roles.DOSTAVLJAC);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class Deliverer extends User
     }
 
     @Override
-    public String getUloga()
+    public enums.Roles getUloga()
     {
         return super.getUloga();
     }
