@@ -10,7 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Map;
+import java.util.Collection;
 
 @Path("user")
 public class UserService
@@ -84,12 +84,12 @@ public class UserService
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/allUsers")
-    public Map getAllUsers()
+    public Collection<User> getAllUsers()
     {
-        //return userDAO.getAllUserObj();
-        return userDAO.getUsers();
+        return userDAO.getAllUserObj();
+        //return userDAO.getUsers();
     }
 
     @GET

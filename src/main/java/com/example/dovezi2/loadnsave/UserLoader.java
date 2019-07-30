@@ -47,7 +47,7 @@ public class UserLoader //loading and parsing data from json
 
 
         JSONArray jsonArray = (JSONArray) parser.parse
-                (new FileReader("E:\\Misa\\Docs\\ispiti\\Web\\dovezi2\\web\\data\\customers.json"));
+                (new FileReader("E:\\Misa\\Docs\\ispiti\\Web\\dovezi2\\src\\main\\webapp\\data\\customers.json"));
 
         for (Object obj : jsonArray)
         {

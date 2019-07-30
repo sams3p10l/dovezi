@@ -9,16 +9,16 @@ dovezi2.controller('RegisterController', function ($scope, userService, $window)
         email: ''
     };
 
-    $scope.registration = function (user) {
+    $scope.register = function (user) {
         user.username = user.username.toLowerCase();
 
         userService.register(user).success(function (response) {
-            if (response.data === "User already exists")
+            if (response === "User already exists")
             {
                 alert("Greska, korisnik vec postoji");
             }
             else
-                $window.location.href = '/dovezi2/#/';
+                $window.location.href = '/dovezi2_rest_war_exploded/#/';
         });
     };
 
@@ -27,7 +27,7 @@ dovezi2.controller('RegisterController', function ($scope, userService, $window)
         console.log("USO U KURCINU");
 
         userService.kurcina().success(function (response) {
-            if (response.data === "KURCINA")
+            if (response === "KURCINA")
             {
                 alert("KURCINA");
                 console.log("KURAC");

@@ -41,7 +41,7 @@ public class UserDAO
     public void saveUsers()
     {
         userSaver.save((ArrayList<User>) getAllUserObj());
-    }
+    } //TODO: ovde greska
 
     public void loadUsers()
     {
