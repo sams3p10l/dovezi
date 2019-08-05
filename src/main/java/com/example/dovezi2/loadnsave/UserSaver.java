@@ -9,10 +9,11 @@ import javax.jws.soap.SOAPBinding;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class UserSaver
 {
-    private ArrayList<User> users = new ArrayList<>();
+    private Collection<User> users = new ArrayList<>();
 
     private JSONArray customersJson = new JSONArray();
     private JSONArray deliverersJson = new JSONArray();
@@ -20,7 +21,7 @@ public class UserSaver
 
     public UserSaver() {}
 
-    public void save(ArrayList<User> pUsers)
+    public void save(Collection<User> pUsers)
     {
         this.users = pUsers;
 
@@ -55,7 +56,7 @@ public class UserSaver
 
     public void saveAllUsersJson()
     {
-        try(FileWriter fileAllUsers = new FileWriter("../../../web/data/allusers.json"))
+        try(FileWriter fileAllUsers = new FileWriter("../../../../../webapp/data/allusers.json"))
         {
             fileAllUsers.write(users.toString());
         } catch (IOException e) {
@@ -63,7 +64,7 @@ public class UserSaver
         }
     }
 
-    public ArrayList<User> getUsers()
+    public Collection<User> getUsers()
     {
         return users;
     }
