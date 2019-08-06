@@ -12,10 +12,14 @@ import java.util.*;
 
 public class UserDAO
 {
-    private static UserLoader userLoader = new UserLoader();
-    private UserSaver userSaver = new UserSaver();
+    private static UserLoader userLoader;
+    private UserSaver userSaver;
 
-    public UserDAO() {}
+    public UserDAO()
+    {
+        userLoader = new UserLoader();
+        userSaver = new UserSaver();
+    }
 
     public boolean findUser(String username)
     {

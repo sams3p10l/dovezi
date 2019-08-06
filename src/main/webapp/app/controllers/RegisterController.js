@@ -13,11 +13,13 @@ dovezi2.controller('RegisterController', function ($scope, userService, $window)
         user.username = user.username.toLowerCase();
 
         userService.register(user).success(function (response) {
+            console.log(response);
+
             if (response === "User already exists")
             {
                 alert("Greska, korisnik vec postoji");
             }
-            else
+            else if (response === "SVE OK")
                 $window.location.href = '/dovezi2_rest_war_exploded/#/';
         });
     };

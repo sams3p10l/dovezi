@@ -34,7 +34,9 @@ public class UserService
         userDAO.loadUsers();
 
         if (userDAO.findUser(user.getUsername()))
-            return Response.status(400).entity("User already exists").build();
+            return Response.status(200).header("Access-Control-Allow-Origin", "*")
+            .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                    .entity("User already exists").build();
 
         User newUser =  new User(user.getUsername(), user.getPassword(), user.getName(), user.getSurname()
                                                             , user.getPhone(), user.getEmail());
@@ -90,7 +92,7 @@ public class UserService
     @Path("/allUsers")
     public Collection<User> getAllUsers()
     {
-        return userDAO.getAllUserObj();
+        return userDAO.getAllUserCollection();
         //return userDAO.getUsers();
     }
 
