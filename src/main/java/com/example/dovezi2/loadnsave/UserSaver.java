@@ -85,20 +85,51 @@ public class UserSaver
                     newDeliverer.put("vehicle", grabbedDeliverer.getVozilo());
 
                     JSONArray listOfOrdersDeliverer = new JSONArray();
-                    ArrayList<String> list = grabbedDeliverer.getAllocatedOrders(); //make em return their id's
+                    ArrayList<String> list = grabbedDeliverer.getAllocatedOrderIDs();
+                    listOfOrdersDeliverer.addAll(list);
+                    newDeliverer.put("orderList", listOfOrdersDeliverer);
+
+                    deliverersJson.add(newDeliverer);
+                }
+            }
+            else if(mUser.getUloga().equals(enums.Roles.ADMINISTRATOR))
+            {
+                Map adminsTemp = UserDAO.getUserLoader().getAdmins();
+                Admin grabbedAdmin;
+
+                if(adminsTemp.containsKey(mUser.getUsername()))
+                {
+                    grabbedAdmin = (Admin) adminsTemp.get(mUser.getUsername());
+
+                    JSONObject newAdmin = new JSONObject();
+
+                    newAdmin.put("username", grabbedAdmin.getUsername());
+                    newAdmin.put("password", grabbedAdmin.getPassword());
+                    newAdmin.put("firstName", grabbedAdmin.getName());
+                    newAdmin.put("lastName", grabbedAdmin.getSurname());
+                    newAdmin.put("email", grabbedAdmin.getEmail());
+                    newAdmin.put("phone", grabbedAdmin.getPhone());
+                    newAdmin.put("regDate", grabbedAdmin.getRegDate());
+                    newAdmin.put("uloga", grabbedAdmin.getUloga().name());
+
+                    adminsJson.add(newAdmin);
                 }
             }
         }
 
         saveAllUsersJson();
+        saveAdminsJson();
         saveCustomersJson();
+        saveDeliverersJson();
     }
 
     private void saveAllUsersJson()
     {
         try(FileWriter fileAllUsers = new FileWriter(path + "../../data/allusers.json"))
         {
+            fileAllUsers.write(String.valueOf(adminsJson.toString()));
             fileAllUsers.write(String.valueOf(customersJson.toString())); //toJsonString?
+            fileAllUsers.write(String.valueOf(deliverersJson.toString()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,6 +140,26 @@ public class UserSaver
         try(FileWriter fileCustomers = new FileWriter(path + "../../data/customers.json"))
         {
             fileCustomers.write(String.valueOf(customersJson.toString()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveDeliverersJson()
+    {
+        try(FileWriter fileDeliverers = new FileWriter(path + "../../data/deliverers.json"))
+        {
+            fileDeliverers.write(String.valueOf(deliverersJson.toString()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveAdminsJson()
+    {
+        try(FileWriter fileAdmins = new FileWriter(path + "../../data/admins.json"))
+        {
+            fileAdmins.write(String.valueOf(adminsJson.toString()));
         } catch (IOException e) {
             e.printStackTrace();
         }

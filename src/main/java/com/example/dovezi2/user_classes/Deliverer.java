@@ -130,9 +130,14 @@ public class Deliverer extends User
         this.vozilo = vozilo;
     }
 
-    public ArrayList<Order> getAllocatedOrders()
+    public ArrayList<String> getAllocatedOrderIDs()
     {
-        return allocatedOrders;
+        ArrayList<String> retval = new ArrayList<>();
+
+        for(Order order : allocatedOrders)
+            retval.add(order.getOrderID());
+
+        return retval;
     }
 
     public void setAllocatedOrders(ArrayList<Order> allocatedOrders)

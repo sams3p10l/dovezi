@@ -8,6 +8,7 @@ import com.example.dovezi2.user_classes.*;
 public class Order
 {
     //TODO: give order ID's for deliverers
+    private String orderID;
     private HashMap<Artikal, Integer> stavka;
     private Date timestamp;
     private Customer customer;
@@ -15,15 +16,29 @@ public class Order
     private String napomena;
     private enums.Statuses status;
 
+    private static int idIterator = 0;
+
     public Order()
     {
+        this.orderID = setID();
     }
 
     public Order(HashMap<Artikal, Integer> stavka, String napomena)
     {
+        this.orderID = setID();
         this.stavka = stavka;
         this.napomena = napomena;
         this.timestamp = new Date();
+    }
+
+    private String setID()
+    {
+        return "Order" + (idIterator++);
+    }
+
+    public String getOrderID()
+    {
+        return orderID;
     }
 
     public HashMap<Artikal, Integer> getStavka()
