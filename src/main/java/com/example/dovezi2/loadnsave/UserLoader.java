@@ -6,13 +6,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import com.example.dovezi2.user_classes.*;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.json.simple.parser.JSONParser;
@@ -21,9 +18,11 @@ public class UserLoader //loading and parsing data from json
 {
     private Map<String, User> allUsers = new HashMap<String, User>();
 
-    private ArrayList<Admin> admins = new ArrayList<Admin>();
-    private ArrayList<Customer> customers = new ArrayList<Customer>();
-    private ArrayList<Deliverer> deliverers = new ArrayList<Deliverer>();
+    private Map<String, Admin> admins = new HashMap<>();
+    private Map<String, Customer> customers = new HashMap<>();
+    private Map<String, Deliverer> deliverers = new HashMap<>();
+
+    String path = UserLoader.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 
     public UserLoader()
     {
@@ -45,9 +44,8 @@ public class UserLoader //loading and parsing data from json
     {
         JSONParser parser = new JSONParser();
 
-
         JSONArray jsonArray = (JSONArray) parser.parse
-                (new FileReader("E:\\Misa\\Docs\\ispiti\\Web\\dovezi2\\src\\main\\webapp\\data\\customers.json"));
+                (new FileReader(path + "../../data/customers.json"));
 
         for (Object obj : jsonArray)
         {
@@ -80,9 +78,8 @@ public class UserLoader //loading and parsing data from json
                                                             email, regDate);
             allUsers.put(userCustomer.getUsername(), userCustomer);
 
-            Customer newCustomer = new Customer(username, password, firstName, lastName, phone, //to the allCustomers list
-                                                            email, orderList, restaurantList, points);
-            customers.add(newCustomer);
+            Customer newCustomer = new Customer(userCustomer, orderList, restaurantList, points);
+            customers.put(newCustomer.getUsername(), newCustomer);
 
         }
 
@@ -103,5 +100,20 @@ public class UserLoader //loading and parsing data from json
     public Map<String, User> getUsers()
     {
         return allUsers;
+    }
+
+    public Map<String, Admin> getAdmins()
+    {
+        return admins;
+    }
+
+    public Map<String, Customer> getCustomers()
+    {
+        return customers;
+    }
+
+    public Map<String, Deliverer> getDeliverers()
+    {
+        return deliverers;
     }
 }

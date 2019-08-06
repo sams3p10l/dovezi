@@ -12,11 +12,19 @@ public class Customer extends User
     {
     }
 
-    public Customer(String username, String password, String name, String surname,
-                    String phone, String email,
-                    ArrayList<String> orderList, ArrayList<String> restaurantList, int pts)
+    public Customer(User parentUser)
     {
-        super(username, password, name, surname, phone, email);
+        super(parentUser.getUsername(), parentUser.getPassword(), parentUser.getName(),
+                parentUser.getSurname(), parentUser.getPhone(), parentUser.getEmail());
+        this.orderIDList = new ArrayList<>();
+        this.restaurantIDList = new ArrayList<>();
+        this.userPoints = 0;
+    }
+
+    public Customer(User parentUser, ArrayList<String> orderList, ArrayList<String> restaurantList, int pts)
+    {
+        super(parentUser.getUsername(), parentUser.getPassword(), parentUser.getName(),
+                parentUser.getSurname(), parentUser.getPhone(), parentUser.getEmail());
         this.orderIDList = orderList;
         this.restaurantIDList = restaurantList;
         this.userPoints = pts;

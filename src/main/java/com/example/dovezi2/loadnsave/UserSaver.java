@@ -1,5 +1,6 @@
 package com.example.dovezi2.loadnsave;
 
+import com.example.dovezi2.dao.UserDAO;
 import com.example.dovezi2.model_classes.enums;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -8,8 +9,7 @@ import com.example.dovezi2.user_classes.*;
 import javax.jws.soap.SOAPBinding;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class UserSaver
 {
@@ -18,6 +18,8 @@ public class UserSaver
     private JSONArray customersJson = new JSONArray();
     private JSONArray deliverersJson = new JSONArray();
     private JSONArray adminsJson = new JSONArray();
+
+    private String path = UserSaver.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 
     public UserSaver() {}
 
@@ -29,36 +31,84 @@ public class UserSaver
         {
             if (mUser.getUloga().equals(enums.Roles.KUPAC))
             {
-                JSONObject newCustomer = new JSONObject();
+                Map customersTemp = UserDAO.getUserLoader().getCustomers(); //da bi mogao da izvlacim podatke iz
+                Customer grabbedCustomer;                                   //klase Customer a ne User
 
+                if(customersTemp.containsKey(mUser.getUsername()))
+                {
+                    grabbedCustomer = (Customer) customersTemp.get(mUser.getUsername());
 
-                newCustomer.put("username", mUser.getUsername());
-                newCustomer.put("password", mUser.getPassword());
-                newCustomer.put("firstName", mUser.getName());
-                newCustomer.put("lastName", mUser.getSurname());
-                newCustomer.put("email", mUser.getEmail());
-                newCustomer.put("phone", mUser.getPhone());
-                newCustomer.put("regDate", mUser.getRegDate());
-                newCustomer.put("uloga", mUser.getUloga().name());
-                //newCustomer.put("points", m)
+                    JSONObject newCustomer = new JSONObject();
 
-                customersJson.add(newCustomer);
+                    newCustomer.put("username", grabbedCustomer.getUsername());
+                    newCustomer.put("password", grabbedCustomer.getPassword());
+                    newCustomer.put("firstName", grabbedCustomer.getName());
+                    newCustomer.put("lastName", grabbedCustomer.getSurname());
+                    newCustomer.put("email", grabbedCustomer.getEmail());
+                    newCustomer.put("phone", grabbedCustomer.getPhone());
+                    newCustomer.put("regDate", grabbedCustomer.getRegDate());
+                    newCustomer.put("uloga", grabbedCustomer.getUloga().name());
+                    newCustomer.put("points", String.valueOf(grabbedCustomer.getUserPoints()));
+
+                    JSONArray listOfOrders = new JSONArray();
+                    ArrayList<String> list1 = grabbedCustomer.getOrderList();
+                    listOfOrders.addAll(list1);
+                    newCustomer.put("orderList", listOfOrders);
+
+                    JSONArray listOfRestaurants = new JSONArray();
+                    ArrayList<String> list2 = grabbedCustomer.getRestaurantList();
+                    listOfRestaurants.addAll(list2);
+                    newCustomer.put("restaurantList", listOfRestaurants);
+
+                    customersJson.add(newCustomer);
+                }
             }
             else if (mUser.getUloga().equals(enums.Roles.DOSTAVLJAC))
             {
+                Map deliverersTemp = UserDAO.getUserLoader().getDeliverers();
+                Deliverer grabbedDeliverer;
 
+                if(deliverersTemp.containsKey(mUser.getUsername()))
+                {
+                    grabbedDeliverer = (Deliverer) deliverersTemp.get(mUser.getUsername());
+
+                    JSONObject newDeliverer = new JSONObject();
+
+                    newDeliverer.put("username", grabbedDeliverer.getUsername());
+                    newDeliverer.put("password", grabbedDeliverer.getPassword());
+                    newDeliverer.put("firstName", grabbedDeliverer.getName());
+                    newDeliverer.put("lastName", grabbedDeliverer.getSurname());
+                    newDeliverer.put("email", grabbedDeliverer.getEmail());
+                    newDeliverer.put("phone", grabbedDeliverer.getPhone());
+                    newDeliverer.put("regDate", grabbedDeliverer.getRegDate());
+                    newDeliverer.put("uloga", grabbedDeliverer.getUloga().name());
+                    newDeliverer.put("vehicle", grabbedDeliverer.getVozilo());
+
+                    JSONArray listOfOrdersDeliverer = new JSONArray();
+                    ArrayList<String> list = grabbedDeliverer.getAllocatedOrders(); //make em return their id's
+                }
             }
         }
 
         saveAllUsersJson();
-
+        saveCustomersJson();
     }
 
-    public void saveAllUsersJson()
+    private void saveAllUsersJson()
     {
-        try(FileWriter fileAllUsers = new FileWriter("../../../../../webapp/data/allusers.json"))
+        try(FileWriter fileAllUsers = new FileWriter(path + "../../data/allusers.json"))
         {
-            fileAllUsers.write(users.toString());
+            fileAllUsers.write(String.valueOf(customersJson.toString())); //toJsonString?
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveCustomersJson()
+    {
+        try(FileWriter fileCustomers = new FileWriter(path + "../../data/customers.json"))
+        {
+            fileCustomers.write(String.valueOf(customersJson.toString()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,7 +119,7 @@ public class UserSaver
         return users;
     }
 
-    public void setUsers(ArrayList<User> users)
+    public void setUsers(Collection<User> users)
     {
         this.users = users;
     }

@@ -8,9 +8,10 @@ public class Admin extends User
     {
     }
 
-    public Admin(String username, String password, String name, String surname, String uloga, String phone, String email)
+    public Admin(User parentUser)
     {
-        super(username, password, name, surname, phone, email);
+        super(parentUser.getUsername(), parentUser.getPassword(), parentUser.getName(),
+                parentUser.getSurname(), parentUser.getPhone(), parentUser.getEmail());
         this.setUloga(enums.Roles.ADMINISTRATOR);
     }
 }

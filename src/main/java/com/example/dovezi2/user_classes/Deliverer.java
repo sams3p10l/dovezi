@@ -12,9 +12,19 @@ public class Deliverer extends User
     {
     }
 
-    public Deliverer(String username, String password, String name, String surname, String uloga, String phone, String email, Vehicle vozilo, ArrayList<Order> allocatedOrders)
+    public Deliverer(User parentUser)
     {
-        super(username, password, name, surname, phone, email);
+        super(parentUser.getUsername(), parentUser.getPassword(), parentUser.getName(),
+                parentUser.getSurname(), parentUser.getPhone(), parentUser.getEmail());
+        this.vozilo = new Vehicle();
+        this.allocatedOrders = new ArrayList<>();
+        this.setUloga(enums.Roles.DOSTAVLJAC);
+    }
+
+    public Deliverer(User parentUser, Vehicle vozilo, ArrayList<Order> allocatedOrders)
+    {
+        super(parentUser.getUsername(), parentUser.getPassword(), parentUser.getName(),
+                parentUser.getSurname(), parentUser.getPhone(), parentUser.getEmail());
         this.vozilo = vozilo;
         this.allocatedOrders = allocatedOrders;
         this.setUloga(enums.Roles.DOSTAVLJAC);
@@ -110,9 +120,9 @@ public class Deliverer extends User
         return super.getRegDate();
     }
 
-    public Vehicle getVozilo()
+    public String getVozilo()
     {
-        return vozilo;
+        return vozilo.getTip().name();
     }
 
     public void setVozilo(Vehicle vozilo)

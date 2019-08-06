@@ -31,6 +31,8 @@ public class UserService
     @Produces(MediaType.TEXT_PLAIN) //check
     public Response register(User user)
     {
+        userDAO.loadUsers();
+
         if (userDAO.findUser(user.getUsername()))
             return Response.status(400).entity("User already exists").build();
 
