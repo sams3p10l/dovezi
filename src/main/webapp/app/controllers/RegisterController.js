@@ -3,8 +3,8 @@ dovezi2.controller('RegisterController', function ($scope, userService, $window)
     $scope.user = {
         username: '',
         password: '',
-        firstName: '',
-        lastName: '',
+        name: '',
+        surname: '',
         phone: '',
         email: ''
     };
