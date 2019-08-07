@@ -7,7 +7,7 @@ dovezi2.controller('HomeController', function($scope, userService) {
 
     function getLoggedUser() {
         userService.getLoggedUser().success(function (data) {
-            if (data === undefined)
+            if (data === "")
             {
                 $scope.notLoggedFlag = true;
                 $scope.loggedFlag = false;

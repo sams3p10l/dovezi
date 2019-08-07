@@ -81,10 +81,12 @@ public class UserService
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/loggedUser")
-    public User getLoggedUser()
+    public Response getLoggedUser()
     {
-        HttpSession session = request.getSession();
-        return (User) session.getAttribute("user_logged_in");
+        HttpSession session = request.getSession(true);
+        User retUser = (User) session.getAttribute("user_logged_in");
+
+        return Response.status(200).entity(retUser).build();
     }
 
     @GET
@@ -98,11 +100,18 @@ public class UserService
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/kurac")
-    public String getKurac()
-    {
-        //return userDAO.getAllUserObj();
-        return "KURCINA";
+    @Path("/logout")
+    public Response logout() {
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user_logged_in");
+
+        if(user != null)
+        {
+            session.invalidate();
+            return Response.status(200).entity("User logged out!").build();
+        }
+
+        return Response.status(500).build();
     }
 
 }

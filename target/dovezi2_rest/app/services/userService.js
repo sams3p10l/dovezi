@@ -6,7 +6,7 @@ dovezi2.factory('userService', function ($http) {
     service.getLoggedUser = getLoggedUser;
     service.login = login;
     service.register = register;
-    service.kurcina = kurcina;
+    service.logout = logout;
 
     return service;
 
@@ -30,7 +30,7 @@ dovezi2.factory('userService', function ($http) {
         return $http.post('/dovezi2_rest_war_exploded/webapi/user/register', user);
     }
 
-    function kurcina() {
-        return $http.get('/dovezi2_rest_war_exploded/webapi/user/kurac');
+    function logout() {
+        return $http.get('/dovezi2_rest_war_exploded/webapi/user/logout');
     }
 });
