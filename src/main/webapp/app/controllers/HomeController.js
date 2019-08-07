@@ -1,6 +1,6 @@
 dovezi2.controller('HomeController', function($scope, userService) {
 
-    $scope.notLoggedFlag = true;
+    $scope.notLoggedFlag = false;
     $scope.loggedFlag = false;
     $scope.user = {};
     $scope.loggedFn = '';
@@ -25,14 +25,14 @@ dovezi2.controller('HomeController', function($scope, userService) {
 
     $scope.goToProfile = function () {
         if($scope.user.role === "ADMINISTRATOR")
-            location.href = '/dovezi2/#/'
+            location.href = '/dovezi2_rest_war_exploded/#/'
     };
 
     $scope.logout = function() {
         userService.logout().success(function() {
             $scope.notLoggedFlag = true;
             $scope.loggedFlag = false;
-            location.href = '/dovezi2/#/';
+            location.href = '/dovezi2_rest_war_exploded/#/';
         });
     };
 

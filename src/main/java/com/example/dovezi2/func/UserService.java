@@ -58,7 +58,7 @@ public class UserService
         HttpSession session = request.getSession();
 
         if (user.getUsername() == null || user.getPassword() == null)
-            return Response.status(400).entity("Invalid request").build();
+            return Response.status(200).entity("Invalid request").build();
         else if (userDAO.findUser(user.getUsername()))
         {
             User loggedUser = userDAO.getUser(user.getUsername()); //if user is registered
@@ -66,7 +66,7 @@ public class UserService
             if (loggedUser.getPassword().equals(user.getPassword()))
             {
                 session.setAttribute("user_logged_in", loggedUser); //flag him as logged in
-                return Response.status(200).build();
+                return Response.status(200).entity(loggedUser).build();
             }
             else
                 return null;
@@ -84,7 +84,7 @@ public class UserService
     public User getLoggedUser()
     {
         HttpSession session = request.getSession();
-        return (User) session.getAttribute("logged_in");
+        return (User) session.getAttribute("user_logged_in");
     }
 
     @GET

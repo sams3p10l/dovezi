@@ -12,13 +12,13 @@ dovezi2.controller('LoginController', function ($scope, userService, $window) {
             else
             {
                 if(data.uloga === "KUPAC"){
-                    $window.location.href = '/dovezi2/#';
+                    $window.location.href = '/dovezi2_rest_war_exploded/#';
                 }
                 if(data.uloga === "ADMINISTRATOR"){
-                    $window.location.href = '/dovezi2/#';
+                    $window.location.href = '/dovezi2_rest_war_exploded/#';
                 }
                 if(data.uloga === "DOSTAVLJAC"){
-                    $window.location.href = '/dovezi2/#';
+                    $window.location.href = '/dovezi2_rest_war_exploded/#';
                 }
             }
         });

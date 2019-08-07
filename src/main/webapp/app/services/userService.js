@@ -17,7 +17,7 @@ dovezi2.factory('userService', function ($http) {
 
     function getLoggedUser()
     {
-        return $http.get('/dovezi2_rest_war_exploded/webapi/user/getLoggedUser');
+        return $http.get('/dovezi2_rest_war_exploded/webapi/user/loggedUser');
     }
 
     function login(user)
