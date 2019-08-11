@@ -24,8 +24,13 @@ dovezi2.controller('HomeController', function($scope, userService) {
     getLoggedUser();
 
     $scope.goToProfile = function () {
-        if($scope.user.role === "ADMINISTRATOR")
-            location.href = '/dovezi2_rest_war_exploded/#/'
+        if($scope.user.uloga === "ADMINISTRATOR")
+            location.href = '/dovezi2_rest_war_exploded/#/user/admins/' + $scope.user.username;
+        else if($scope.user.uloga === "KUPAC")
+            location.href = '/dovezi2_rest_war_exploded/#/user/customers/' + $scope.user.username;
+        else if($scope.user.uloga === "DOSTAVLJAC")
+            location.href = '/dovezi2_rest_war_exploded/#/user/deliverers/' + $scope.user.username;
+
     };
 
     $scope.logout = function() {

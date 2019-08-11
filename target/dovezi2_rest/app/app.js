@@ -15,6 +15,10 @@ dovezi2.config(['$routeProvider', '$locationProvider', function ($routeProvider,
         .when('/registration', {
             controller: 'RegisterController',
             templateUrl: 'pages/register.html'
+        })
+        .when('/user/customers/:username', {
+            controller: 'CustomerController',
+            templateUrl: 'pages/userProfile.html'
         });
 }]);
 
