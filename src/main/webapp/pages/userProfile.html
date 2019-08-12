@@ -13,7 +13,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="" ng-click="personalData()">
-                            Kupac: {{user.username}}
+                            Profil: {{loadedUser.username}}
                         </a>
                     </li>
                     <li class="nav-item">
@@ -32,3 +32,61 @@
     </div>
 
 </nav>
+
+<br/>
+<br/>
+<br/>
+
+<div class="container" ng-show="showDataFlag">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" name="personalDataForm" >
+                <div class="form-group">
+                    <label class="control-label col-md-6 col-md-offset-2" style="font-weight: bold; font-size: larger">Licni podaci</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelName">Ime:</label>
+                    <div>
+                        <label class="control-label" id="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{loadedUser.name}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelSurname">Prezime:</label>
+                    <div>
+                        <label class="control-label" id="labelSurname">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{loadedUser.surname}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelUsername">Korisnicko ime:</label>
+                    <div>
+                        <label class="control-label" id="labelUsername">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{loadedUser.username}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelRegdate">Datum registracije:</label>
+                    <div>
+                        <label class="control-label" id="labelRegdate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{loadedUser.regDate}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelEmail">Email:</label>
+                    <div>
+                        <label class="control-label" id="labelEmail">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{loadedUser.email}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelPhone">Telefon:</label>
+                    <div>
+                        <label class="control-label" id="labelPhone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{loadedUser.phone}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelBodovi">Bodovi:</label>
+                    <div>
+                        <label class="control-label" id="labelBodovi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{loadedUser.userPoints}} </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

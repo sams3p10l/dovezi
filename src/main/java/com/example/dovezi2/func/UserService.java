@@ -10,6 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Path("user")
@@ -114,4 +115,19 @@ public class UserService
         return Response.status(500).build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/customers")
+    public Response getAllCustomers()
+    {
+        return Response.status(200).entity(UserDAO.getUserLoader().getCustomers()).build();
+    }
+
+    @GET
+    @Path("customers/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCustomer(@PathParam("username") String username)
+    {
+        return Response.status(200).entity(UserDAO.getUserLoader().getCustomers().get(username)).build();
+    }
 }

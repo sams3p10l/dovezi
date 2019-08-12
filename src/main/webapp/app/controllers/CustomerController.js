@@ -1,22 +1,22 @@
-dovezi2.controller('CustomerController', function ($scope, userService, orderService) {
+dovezi2.controller('CustomerController', function ($scope, userService) {
 
     function initUser() {
         userService.getLoggedUser().success(function (data) {
-            $scope.user = data;
+            $scope.loadedUser = data;
         });
     }
     initUser();
 
-    $scope.user = {};
+    $scope.loadedUser = {};
     $scope.price = 0;
     $scope.orderDescription = '';
 
-    $scope.showDataFlag = false;
+    $scope.showDataFlag = true;
     $scope.showCartFlag = false;
     $scope.showFavoritesFlag = false;
 
     $scope.personalData = function () {
-        userService.getLoggedUser.success(function (data) {
+        userService.getLoggedUser().success(function () {
             $scope.showDataFlag = true;
             $scope.showCartFlag = false;
             $scope.showFavoritesFlag = false;
