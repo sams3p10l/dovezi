@@ -53,11 +53,11 @@ public class UserLoader //loading and parsing data from json
 
             String username = (String) jsonObject.get("username");
             String password = (String) jsonObject.get("password");
-            String firstName = (String) jsonObject.get("firstname");
-            String lastName = (String) jsonObject.get("lastname");
+            String firstName = (String) jsonObject.get("firstName");
+            String lastName = (String) jsonObject.get("lastName");
             String phone = (String) jsonObject.get("phone");
             String email = (String) jsonObject.get("email");
-            String regDate = (String) jsonObject.get("regdate");
+            String regDate = (String) jsonObject.get("regDate");
             JSONArray userOrderIDs = (JSONArray) jsonObject.get("orderList");
             JSONArray userRestaurantIDs = (JSONArray) jsonObject.get("restaurantList");
 
