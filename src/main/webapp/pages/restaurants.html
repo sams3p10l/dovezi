@@ -26,3 +26,29 @@
 <br/>
 <br/>
 <br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="btn-group" style="max-height: 70px">
+                <h4 style="margin-top: 8px">Kategorije:</h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button style="height:50px; border-bottom-left-radius: 4px; border-top-left-radius: 4px; background-color: rgba(0,0,0,0.64); border-color: rgba(0,0,0,0)" type="button" class="btn btn-primary" ng-click="getCategory(categories[6])">Sve</button>
+                <button style="height:50px; white-space: nowrap" type="button" class="btn btn-default" ng-click="getCategory(categories[0])">Domaća kuhinja</button>
+                <button style="height:50px; background-color: rgba(0,0,0,0.64); border-color: rgba(0,0,0,0)" type="button" class="btn btn-primary" ng-click="getCategory(categories[1])">Roštilj</button>
+                <button style="height:50px; white-space: nowrap" type="button" class="btn btn-default" ng-click="getCategory(categories[2])">Kineski restorani</button>
+                <button style="height:50px; white-space: nowrap; background-color: rgba(0,0,0,0.64); border-color: rgba(0,0,0,0)" type="button" class="btn btn-primary" ng-click="getCategory(categories[3])">Indijski restorani</button>
+                <button style="height:50px" type="button" class="btn btn-default" ng-click="getCategory(categories[4])">Poslastičarnice</button>
+                <button style="height:50px; background-color: rgba(0,0,0,0.64); border-color: rgba(0,0,0,0)" type="button" class="btn btn-primary" ng-click="getCategory(categories[5])">Picerije</button>
+            </div>
+            <br/>
+            <br/>
+            <div class="input-group-prepend" style="width: max-content">
+                <h4 style="margin-top: 8px">Pretraga:</h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input style="height:50px; width: 15em; text-align:center" type="text" ng-model="searchBy.name" placeholder="Pretraga restorana po imenu"/>
+                <input style="height:50px; width: 15em; text-align:center" type="text" ng-model="searchBy.address" placeholder="Pretraga restorana po adresi"/>
+            </div>
+        </div>
+    </div>
+</div>

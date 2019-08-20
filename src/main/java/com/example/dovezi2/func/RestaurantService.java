@@ -1,0 +1,32 @@
+package com.example.dovezi2.func;
+
+import com.example.dovezi2.dao.RestaurantDAO;
+import com.example.dovezi2.model_classes.Restaurant;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import java.util.Collection;
+
+@Path("restaurants")
+public class RestaurantService
+{
+    @Context
+    ServletContext ctx;
+
+    @Context
+    HttpServletRequest request;
+
+    private RestaurantDAO restaurantDAO = new RestaurantDAO();
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/restorani")
+    public Collection<Restaurant> getAllRestaurants(){
+        return null;
+    }
+}

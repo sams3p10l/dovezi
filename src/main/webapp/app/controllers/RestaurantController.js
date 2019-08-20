@@ -1,6 +1,7 @@
 dovezi2.controller('RestaurantController', function ($scope, userService) {
 
     $scope.loadedUser = "";
+    $scope.list = [];
 
     initUser();
 
@@ -10,5 +11,11 @@ dovezi2.controller('RestaurantController', function ($scope, userService) {
 
         });
     }
+
+    $scope.categories = ['DOMACA', 'ROSTILJ', 'KINESKA', 'INDIJSKA', 'POSLASTICARNICA', 'PICERIJA', 'SVE'];
+
+    $scope.getCategory = function (localCategory) {
+        
+    };
 
 });
