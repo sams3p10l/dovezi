@@ -19,7 +19,11 @@ dovezi2.config(['$routeProvider', '$locationProvider', function ($routeProvider,
         .when('/user/customers/:username', {
             controller: 'CustomerController',
             templateUrl: 'pages/userProfile.html'
-        });
+        })
+        .when('/restaurants', {
+            controller: 'RestaurantController',
+            templateUrl: 'pages/restaurants.html'
+    })
 }]);
 
 
