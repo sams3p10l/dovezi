@@ -1,7 +1,7 @@
 [
 	{
-		"quantity": "400.0",
-		"typeOfItem": "JELO",
+		"quantity": "400",
+		"typeOfItem": "HRANA",
 		"price": "390.0",
 		"name": "Giros porcija",
 		"description": "Minuta: pita, meso, pomfrit, namaz, salata",
@@ -10,7 +10,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
+		"quantity": "500",
 		"typeOfItem": "PICE",
 		"price": "100.0",
 		"name": "Sprite",
@@ -20,8 +20,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
-		"typeOfItem": "JELO",
+		"quantity": "500",
+		"typeOfItem": "HRANA",
 		"price": "400.0",
 		"name": "Margarita",
 		"description": "Roma: pelat, origano, sir, crne i zelene masline",
@@ -30,8 +30,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "260.0",
 		"name": "Veliki giros",
 		"description": "Minuta: pita, meso, pomfrit, namaz, salata",
@@ -40,7 +40,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "250.0",
+		"quantity": "250",
 		"typeOfItem": "PICE",
 		"price": "70.0",
 		"name": "Rosa",
@@ -50,8 +50,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "540.0",
 		"name": "Meksikana",
 		"description": "BigPizza:Pelat, sir, crveni luk, margarin, susam, kulen, meksicka ljuta paprika",
@@ -60,8 +60,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "540.0",
 		"name": "Peperoni",
 		"description": "BigPizza:Pelat, sir, kulen",
@@ -70,8 +70,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "200.0",
-		"typeOfItem": "JELO",
+		"quantity": "200",
+		"typeOfItem": "HRANA",
 		"price": "160.0",
 		"name": "Margarita",
 		"description": "Minuta: pelat, kackavalj",
@@ -80,8 +80,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
-		"typeOfItem": "JELO",
+		"quantity": "500",
+		"typeOfItem": "HRANA",
 		"price": "510.0",
 		"name": "Vezuvio",
 		"description": "Roma: pelat, origano, sir, masline, sunka",
@@ -90,8 +90,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "540.0",
 		"name": "Tuna",
 		"description": "BigPizza:Pelat, tunjevina, pecurke, crne masline",
@@ -100,8 +100,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "590.0",
 		"name": "Prsuta i rukola premijum",
 		"description": "BigPizza:Pelat, kozji sir, prsuta, rukola",
@@ -110,7 +110,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "250.0",
+		"quantity": "250",
 		"typeOfItem": "PICE",
 		"price": "100.0",
 		"name": "Guarana",
@@ -120,7 +120,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
+		"quantity": "500",
 		"typeOfItem": "PICE",
 		"price": "95.0",
 		"name": "Pepsi toceni veliki",
@@ -130,7 +130,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
+		"quantity": "500",
 		"typeOfItem": "PICE",
 		"price": "70.0",
 		"name": "Voda voda",
@@ -140,7 +140,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
+		"quantity": "500",
 		"typeOfItem": "PICE",
 		"price": "100.0",
 		"name": "Next Joy pomorandza",
@@ -150,8 +150,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
-		"typeOfItem": "JELO",
+		"quantity": "500",
+		"typeOfItem": "HRANA",
 		"price": "510.0",
 		"name": "Kapricoza",
 		"description": "Roma: pelat, origano, sunka, sampinjoni, sir, masline",
@@ -160,8 +160,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "540.0",
 		"name": "Kapricoza",
 		"description": "BigPizza:Pelat, sir, sunka, pecurke",
@@ -170,7 +170,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "330.0",
+		"quantity": "330",
 		"typeOfItem": "PICE",
 		"price": "80.0",
 		"name": "Cedevita limun",
@@ -180,8 +180,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "540.0",
 		"name": "Pesto",
 		"description": "BigPizz:Pelat, sir, paradajz, parmezan, pesto sos, bosiljak",
@@ -190,7 +190,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
+		"quantity": "500",
 		"typeOfItem": "PICE",
 		"price": "140.0",
 		"name": "Zajecarsko pivo",
@@ -200,7 +200,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "330.0",
+		"quantity": "330",
 		"typeOfItem": "PICE",
 		"price": "80.0",
 		"name": "Cedevita narandza",
@@ -210,8 +210,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
-		"typeOfItem": "JELO",
+		"quantity": "500",
+		"typeOfItem": "HRANA",
 		"price": "520.0",
 		"name": "Milaneze",
 		"description": "Roma: pelat, sunka, sampinjoni, sir, paradajz, pavlaka, masline, parmezan, origano",
@@ -220,7 +220,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
+		"quantity": "500",
 		"typeOfItem": "PICE",
 		"price": "70.0",
 		"name": "Rosa voda",
@@ -230,8 +230,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "540.0",
 		"name": "Karbonara",
 		"description": "BigPizza:Kisela pavlaka, biber, beli luk, pecurke, slanina, sir, pavlaka",
@@ -240,7 +240,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "1500.0",
+		"quantity": "1500",
 		"typeOfItem": "PICE",
 		"price": "130.0",
 		"name": "Coca-cola",
@@ -250,8 +250,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "200.0",
-		"typeOfItem": "JELO",
+		"quantity": "200",
+		"typeOfItem": "HRANA",
 		"price": "170.0",
 		"name": "Mali giros",
 		"description": "Minuta: pita, meso, pomfrit, namaz, salata",
@@ -260,8 +260,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "200.0",
-		"typeOfItem": "JELO",
+		"quantity": "200",
+		"typeOfItem": "HRANA",
 		"price": "160.0",
 		"name": "Vegetarijana",
 		"description": "Minuta: pelat, sampinjoni, masline, biljni sir, krastavac, paradajz",
@@ -270,7 +270,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
+		"quantity": "500",
 		"typeOfItem": "PICE",
 		"price": "100.0",
 		"name": "Coca-cola",
@@ -280,8 +280,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "200.0",
-		"typeOfItem": "JELO",
+		"quantity": "200",
+		"typeOfItem": "HRANA",
 		"price": "220.0",
 		"name": "Tuna",
 		"description": "Minuta: pelat, sampinjoni, masline, tuna, biljni sir, krastavac, paradajz",
@@ -290,7 +290,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "330.0",
+		"quantity": "330",
 		"typeOfItem": "PICE",
 		"price": "75.0",
 		"name": "Pepsi toceni mali",
@@ -300,8 +300,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "540.0",
 		"name": "Vegetarijana",
 		"description": "BigPizza:Pelat, sir, pecurke, kukuruz, paprika, luk, crne masline",
@@ -310,8 +310,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "600.0",
-		"typeOfItem": "JELO",
+		"quantity": "600",
+		"typeOfItem": "HRANA",
 		"price": "1300.0",
 		"name": "Hot dog kapricoza",
 		"description": "BigPizza:Pelat, sir, sunka, pecurke, kiflice sa virslama",
@@ -320,8 +320,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "200.0",
-		"typeOfItem": "JELO",
+		"quantity": "200",
+		"typeOfItem": "HRANA",
 		"price": "160.0",
 		"name": "Kapricoza",
 		"description": "Minuta: pelat, sunka, kackavalj, sampinjoni",
@@ -330,8 +330,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "540.0",
 		"name": "Vezuvio",
 		"description": "BigPizza:Pelat, sir, sunka",
@@ -340,8 +340,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "300.0",
-		"typeOfItem": "JELO",
+		"quantity": "300",
+		"typeOfItem": "HRANA",
 		"price": "590.0",
 		"name": "Piletina i feta premijum",
 		"description": "BigPizza:Sir, pileci file, kisela pavlaka, tikvice, feta",
@@ -350,8 +350,8 @@
 		"delete": false
 	},
 	{
-		"quantity": "600.0",
-		"typeOfItem": "JELO",
+		"quantity": "600",
+		"typeOfItem": "HRANA",
 		"price": "1490.0",
 		"name": "Cheeseburger",
 		"description": "BigPizza:Burger, kisela pavlaka, sir, cedar sir, paradajz, zelena salata, majonez, kecap",
@@ -360,7 +360,7 @@
 		"delete": false
 	},
 	{
-		"quantity": "500.0",
+		"quantity": "500",
 		"typeOfItem": "PICE",
 		"price": "100.0",
 		"name": "Fanta",

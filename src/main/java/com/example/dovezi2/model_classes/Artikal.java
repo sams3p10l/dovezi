@@ -2,13 +2,20 @@ package com.example.dovezi2.model_classes;
 
 public abstract class Artikal
 {
+    private String id;
     private String naziv;
     private double cena;
     private String opis;
     private int kolicina;
+    protected enums.ArtikalTypes type;
 
     public Artikal()
     {
+        this.id = "";
+        this.naziv = "";
+        this.cena = 0.0;
+        this.opis = "";
+        this.kolicina = 0;
     }
 
     public Artikal(String naziv, double cena, String opis, int kolicina)
@@ -17,6 +24,28 @@ public abstract class Artikal
         this.cena = cena;
         this.opis = opis;
         this.kolicina = kolicina;
+        this.id = naziv + opis;
+        this.id = this.id.toUpperCase().replace(" ", "-");
+    }
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    public enums.ArtikalTypes getType()
+    {
+        return type;
+    }
+
+    public void setType(enums.ArtikalTypes type)
+    {
+        this.type = type;
     }
 
     public String getNaziv()

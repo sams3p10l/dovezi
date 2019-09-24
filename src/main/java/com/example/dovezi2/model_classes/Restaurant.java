@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Restaurant
 {
+    private String id;
     private String naziv;
     private String adresa;
     private enums.Categories kategorija;
@@ -12,6 +13,11 @@ public class Restaurant
 
     public Restaurant()
     {
+        this.id = "";
+        this.naziv = "";
+        this.adresa = "";
+        this.drinkList = new ArrayList<>();
+        this.mealList = new ArrayList<>();
     }
 
     public Restaurant(String naziv, String adresa, enums.Categories kategorija, ArrayList<String> mealList, ArrayList<String> drinkList)
@@ -21,6 +27,18 @@ public class Restaurant
         this.kategorija = kategorija;
         this.mealList = mealList;
         this.drinkList = drinkList;
+        this.id = naziv + adresa;
+        this.id = this.id.toUpperCase().replace(' ', '-');
+    }
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
     }
 
     public String getNaziv()

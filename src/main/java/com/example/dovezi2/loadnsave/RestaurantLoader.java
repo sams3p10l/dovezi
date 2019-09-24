@@ -29,7 +29,7 @@ public class RestaurantLoader
         }
     }
 
-    private void loadRestaurants() throws IOException, ParseException
+    public void loadRestaurants() throws IOException, ParseException
     {
         JSONParser parser = new JSONParser();
         JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(path + "../../data/restaurants.json"));

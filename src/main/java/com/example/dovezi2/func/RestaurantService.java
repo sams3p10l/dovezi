@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -27,6 +28,13 @@ public class RestaurantService
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/restorani")
     public Collection<Restaurant> getAllRestaurants(){
-        return null;
+        return restaurantDAO.getAllRestaurants();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/restorani/ime={name}")
+    public Restaurant getRestaurantByName(@PathParam("name")String name){
+        return restaurantDAO.getRestaurantByName(name);
     }
 }
