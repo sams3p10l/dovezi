@@ -50,5 +50,35 @@
                 <input style="height:50px; width: 15em; text-align:center" type="text" ng-model="searchBy.address" placeholder="Pretraga restorana po adresi"/>
             </div>
         </div>
+        <div class="col-md-8" style="margin-top: 140px">
+            <div ng-repeat="restaurant in restaurants | filter: searchBy">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>{{restaurant.naziv}}</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary" ng-click="addToFavorites(restaurant)">Add to favs</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <label>Adresa:</label>
+                                    <label>{{restaurant.adresa}}</label>
+                                </div>
+                                <div>
+                                    <label>Kategorija:</label>
+                                    <label>{{restaurant.kategorija}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -40,6 +40,33 @@ public class RestaurantDAO
         return null;
     }
 
+    public Collection<Restaurant> getRestaurantsByCategory(String category)
+    {
+        Collection<Restaurant> retVal = new ArrayList<>();
+        String kat = category.toUpperCase();
+
+        for(Restaurant rest : restaurantLoader.getAllRestaurants().values()){
+            if (kat.equals(rest.getKategorija().name()))
+            {   //TODO: delete check
+                retVal.add(rest);
+            }
+        }
+
+        return retVal;
+    }
+
+    public Collection<Restaurant> getRestaurantsByAddress(String address)
+    {
+        Collection<Restaurant> retVal = new ArrayList<>();
+
+        for (Restaurant rest : restaurantLoader.getAllRestaurants().values()){
+            if (rest.getAdresa().contains(address))
+                retVal.add(rest);
+        }
+
+        return retVal;
+    }
+
     public void saveRestaurants()
     {
         restaurantSaver.save(restaurantLoader.getAllRestaurants().values());

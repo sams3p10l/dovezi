@@ -21,6 +21,16 @@ dovezi2.controller('RestaurantController', function ($scope, $routeParams, userS
                 console.log($scope.restaurants);
             });
         }
+        else
+        {
+            restaurantService.getRestaurantsByCategory(localCategory).success(function (data) {
+                $scope.restaurants = data;
+            });
+        }
     };
+    
+    $scope.addToFavorites = function (pRest) {
+        
+    }
 
 });

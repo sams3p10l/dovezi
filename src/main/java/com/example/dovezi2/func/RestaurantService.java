@@ -37,4 +37,18 @@ public class RestaurantService
     public Restaurant getRestaurantByName(@PathParam("name")String name){
         return restaurantDAO.getRestaurantByName(name);
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/restorani/kategorija={cat}")
+    public Collection<Restaurant> getRestaurantByCategory(@PathParam("cat")String cat){
+        return restaurantDAO.getRestaurantsByCategory(cat);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/restorani/adresa={adr}")
+    public Collection<Restaurant> getRestaurantsByAddress(@PathParam("adr")String adresa){
+        return restaurantDAO.getRestaurantsByAddress(adresa);
+    }
 }
