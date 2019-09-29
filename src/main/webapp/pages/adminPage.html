@@ -5,9 +5,9 @@
         <a href="#/" class="navbar-brand">dovezi.rs</a>
 
         <ul class="nav navbar-nav">
-            <li><a href="" ng-click="">Korisnici</a></li>
-            <li><a href="" ng-click="">Restorani</a></li>
-            <li><a href="" ng-click="">Vozila</a></li>
+            <li class="nav-link"><a href="" ng-click="showUsers()">Korisnici</a></li>
+            <li class="nav-link"><a href="" ng-click="">Restorani</a></li>
+            <li class="nav-link"><a href="" ng-click="">Vozila</a></li>
         </ul>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,3 +28,106 @@
     </div>
 
 </nav>
+
+<div class = "container" ng-show="showDataFlag" style="margin-top: 70px">
+    <div class="row">
+        <div class = "col-md-6">
+            <form class="form-horizontal" name="personalDataForm">
+                <div class="form-group">
+                    <label class="control-label col-md-6 col-md-offset-2" style="font-weight: bold; font-size: larger">Licni podaci administratora:</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelName">Ime:</label>
+                    <div>
+                        <label class="control-label" id="labelName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.name}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelSurname">Prezime:</label>
+                    <div>
+                        <label class="control-label" id="labelSurname">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.surname}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelUsername">Korisnicko ime:</label>
+                    <div>
+                        <label class="control-label" id="labelUsername">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.username}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelRegdate">Datum registracije:</label>
+                    <div>
+                        <label class="control-label" id="labelRegdate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.regDate}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelEmail">Email:</label>
+                    <div>
+                        <label class="control-label" id="labelEmail">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.email}} </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6" for="labelPhone">Telefon:</label>
+                    <div>
+                        <label class="control-label" id="labelPhone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.phone}} </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-show="showUsersFlag" style="margin-top: 70px">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="btn-group-vertical" style="width: 100%">
+                <button style="height: 50px" type="button" class="btn btn-default"
+                        ng-click="getUsers(users[0])">Administratori</button>
+                <button style="height: 50px" type="button" class="btn btn-default"
+                        ng-click="getUsers(users[1])">Kupci</button>
+                <button style="height: 50px" type="button" class="btn btn-default"
+                        ng-click="getUsers(users[2])">Dostavljaci</button>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <!-- razmak -->
+        </div>
+        <div class="col-md-8">
+            <div ng-repeat="korisnik in korisnici" ng-show="showUsersFlag">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>{{korisnik.uloga}}: {{korisnik.username}}</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div>
+                                    <label>Ime: </label> <label>{{korisnik.name}}</label>
+                                </div>
+                                <div>
+                                    <label>Prezime: </label> <label>{{korisnik.surname}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <label>Broj telefona: </label> <label>{{korisnik.phone}}</label>
+                                </div>
+                                <div>
+                                    <label>Email: </label> <label>{{korisnik.email}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <label>Datum registracije: </label> <label>{{korisnik.regDate}}</label>
+                                </div>
+                                <div>
+                                    <label>Funkcija: </label> <label>{{korisnik.uloga}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,7 +14,7 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     $scope.showUsersFlag = false;
     $scope.showRestaurantsFlag = false;
     $scope.showVehiclesFlag = false;
-    $scope.showDataFlag = false;
+    $scope.showDataFlag = true;
     $scope.deleteFoodFlag = false;
     $scope.deleteDrinkFlag = false;
 
@@ -24,12 +24,40 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     initUser();
 
     $scope.personalData = function () {
-        userService.getLoggedUser.success(function () {
+        userService.getLoggedUser().success(function () {
             $scope.showDataFlag = true;
             $scope.showRestaurantsFlag = false;
             $scope.showUsersFlag = false;
             $scope.showVehiclesFlag = false;
         });
-    }
+    };
+
+    $scope.getUsers = function (user) {
+        if(user === 'ADMINISTRATOR'){
+            userService.getAdmins().success(function (data) {
+                $scope.korisnici = data;
+                $scope.showUsersFlag = true;
+            });
+        }
+        else if (user === 'KUPAC'){
+            userService.getCustomers().success(function (data) {
+                $scope.korisnici = data;
+                $scope.showUsersFlag = true;
+            });
+        }
+        else if (user === 'DOSTAVLJAC'){
+            userService.getDeliverers().success(function (data) {
+                $scope.korisnici = data;
+                $scope.showUsersFlag = true;
+            });
+        }
+    };
+
+    $scope.showUsers = function () {
+        $scope.showUsersFlag = true;
+        $scope.showRestaurantsFlag = false;
+        $scope.showVehiclesFlag = false;
+        $scope.showDataFlag = false;
+    };
 
 });

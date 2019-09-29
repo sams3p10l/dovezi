@@ -130,4 +130,20 @@ public class UserService
     {
         return Response.status(200).entity(UserDAO.getUserLoader().getCustomers().get(username)).build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/admins")
+    public Response getAllAdmins()
+    {
+        return Response.status(200).entity(UserDAO.getUserLoader().getAdmins()).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/deliverers")
+    public Response getAllDeliverers()
+    {
+        return Response.status(200).entity(UserDAO.getUserLoader().getDeliverers()).build();
+    }
 }
