@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Deliverer extends User
 {
-    private Vehicle vozilo;
-    private ArrayList<Order> allocatedOrders;
+    private enums.Vehicles vozilo;
+    private ArrayList<String> allocatedOrders;
 
     public Deliverer()
     {
@@ -16,18 +16,32 @@ public class Deliverer extends User
     {
         super(parentUser.getUsername(), parentUser.getPassword(), parentUser.getName(),
                 parentUser.getSurname(), parentUser.getPhone(), parentUser.getEmail());
-        this.vozilo = new Vehicle();
         this.allocatedOrders = new ArrayList<>();
         this.setUloga(enums.Roles.DOSTAVLJAC);
     }
 
-    public Deliverer(User parentUser, Vehicle vozilo, ArrayList<Order> allocatedOrders)
+    public Deliverer(User parentUser, String pVozilo, ArrayList<String> allocatedOrders)
     {
         super(parentUser.getUsername(), parentUser.getPassword(), parentUser.getName(),
                 parentUser.getSurname(), parentUser.getPhone(), parentUser.getEmail());
-        this.vozilo = vozilo;
+        this.vozilo = string2vehicle(pVozilo);
         this.allocatedOrders = allocatedOrders;
         this.setUloga(enums.Roles.DOSTAVLJAC);
+    }
+
+    private enums.Vehicles string2vehicle(String uloga)
+    {
+        if (uloga.equals("BICIKL") || uloga.equals("SKUTER") || uloga.equals("AUTOMOBIL"))
+        {
+            if (uloga.equals("BICIKL"))
+                return enums.Vehicles.BICIKL;
+            if (uloga.equals("SKUTER"))
+                return enums.Vehicles.SKUTER;
+
+            return enums.Vehicles.AUTOMOBIL;
+        }
+
+        return null;
     }
 
     @Override
@@ -122,25 +136,20 @@ public class Deliverer extends User
 
     public String getVozilo()
     {
-        return vozilo.getTip().name();
+        return vozilo.name();
     }
 
-    public void setVozilo(Vehicle vozilo)
+    public void setVozilo(enums.Vehicles vozilo)
     {
         this.vozilo = vozilo;
     }
 
     public ArrayList<String> getAllocatedOrderIDs()
     {
-        ArrayList<String> retval = new ArrayList<>();
-
-        for(Order order : allocatedOrders)
-            retval.add(order.getOrderID());
-
-        return retval;
+        return allocatedOrders;
     }
 
-    public void setAllocatedOrders(ArrayList<Order> allocatedOrders)
+    public void setAllocatedOrders(ArrayList<String> allocatedOrders)
     {
         this.allocatedOrders = allocatedOrders;
     }

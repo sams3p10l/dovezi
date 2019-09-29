@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import com.example.dovezi2.user_classes.*;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,13 +32,13 @@ public class UserLoader //loading and parsing data from json
 
     public void loadAllUsers()
     {
-        loadAdmins();
         try {
             loadCustomers();
+            loadAdmins();
+            loadDeliverers();
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        loadDeliverers();
     }
 
     private void loadCustomers() throws IOException, ParseException
@@ -85,15 +86,73 @@ public class UserLoader //loading and parsing data from json
 
     }
 
-    private void loadAdmins()
+    private void loadAdmins() throws IOException, ParseException
     {
         JSONParser parser = new JSONParser();
+
+        JSONArray jsonArray = (JSONArray) parser.parse
+                (new FileReader(path + "../../data/admins.json"));
+
+        for (Object obj : jsonArray)
+        {
+            JSONObject jsonObject = (JSONObject) obj;
+
+            String username = (String) jsonObject.get("username");
+            String password = (String) jsonObject.get("password");
+            String firstName = (String) jsonObject.get("firstName");
+            String lastName = (String) jsonObject.get("lastName");
+            String phone = (String) jsonObject.get("phone");
+            String email = (String) jsonObject.get("email");
+            String regDate = (String) jsonObject.get("regDate");
+
+            String role = enums.Roles.ADMINISTRATOR.name();
+
+            User userAdmin = new User(username, password, firstName, lastName, role, phone, //to the allUsers list
+                    email, regDate);
+            allUsers.put(userAdmin.getUsername(), userAdmin);
+
+            Admin newAdmin = new Admin(userAdmin);
+            admins.put(newAdmin.getUsername(), newAdmin);
+        }
 
     }
 
-    private void loadDeliverers()
+    private void loadDeliverers() throws IOException, ParseException
     {
         JSONParser parser = new JSONParser();
+
+        JSONArray jsonArray = (JSONArray) parser.parse
+                (new FileReader(path + "../../data/deliverer.json"));
+
+        for (Object obj : jsonArray)
+        {
+            JSONObject jsonObject = (JSONObject) obj;
+
+            String username = (String) jsonObject.get("username");
+            String password = (String) jsonObject.get("password");
+            String firstName = (String) jsonObject.get("firstName");
+            String lastName = (String) jsonObject.get("lastName");
+            String phone = (String) jsonObject.get("phone");
+            String email = (String) jsonObject.get("email");
+            String regDate = (String) jsonObject.get("regDate");
+            String vehicle = (String) jsonObject.get("vehicle");
+            JSONArray userOrderIDs = (JSONArray) jsonObject.get("orderList");
+
+            String role = enums.Roles.DOSTAVLJAC.name();
+
+            ArrayList<String> orderList = new ArrayList<String>();
+            for (Object userOrder : userOrderIDs) {
+                orderList.add((String) userOrder);
+            }
+
+            User userDeliverer = new User(username, password, firstName, lastName, role, phone, //to the allUsers list
+                    email, regDate);
+            allUsers.put(userDeliverer.getUsername(), userDeliverer);
+
+            Deliverer newDeliverer = new Deliverer(userDeliverer, vehicle, orderList);
+            deliverers.put(newDeliverer.getUsername(), newDeliverer);
+
+        }
 
     }
 

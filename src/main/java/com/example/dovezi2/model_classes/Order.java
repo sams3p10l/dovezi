@@ -7,7 +7,6 @@ import com.example.dovezi2.user_classes.*;
 
 public class Order
 {
-    //TODO: give order ID's for deliverers
     private String orderID;
     private HashMap<Artikal, Integer> stavka;
     private Date timestamp;
