@@ -175,4 +175,24 @@ public class UserLoader //loading and parsing data from json
     {
         return deliverers;
     }
+
+    public void setAllUsers(Map<String, User> allUsers)
+    {
+        this.allUsers = allUsers;
+    }
+
+    public void setAdmins(Map<String, Admin> admins)
+    {
+        this.admins = admins;
+    }
+
+    public void setCustomers(Map<String, Customer> customers)
+    {
+        this.customers = customers;
+    }
+
+    public void setDeliverers(Map<String, Deliverer> deliverers)
+    {
+        this.deliverers = deliverers;
+    }
 }

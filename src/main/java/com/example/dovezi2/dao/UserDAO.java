@@ -81,4 +81,99 @@ public class UserDAO
     {
         return userLoader;
     }
+
+    public void setCustomerFunction(String pUsername, enums.Roles pUloga)
+    {
+        Collection<User> mUsers = getAllUserCollection();
+        Collection<Customer> mCustomers = userLoader.getCustomers().values();
+
+        for (User user : mUsers)
+        {
+            if (user.getUsername().equals(pUsername))
+                user.setUloga(pUloga);
+        }
+
+        for (Customer customer : mCustomers)
+        {
+            if (customer.getUsername().equals(pUsername))
+                customer.setUloga(pUloga);
+        }
+
+        HashMap<String, User> newMapUsers = new HashMap<>();
+        for (User newUser : mUsers)
+            newMapUsers.put(newUser.getUsername(), newUser);
+
+        HashMap<String, Customer> newMapCustomers = new HashMap<>();
+        for (Customer newCustomer : mCustomers)
+            newMapCustomers.put(newCustomer.getUsername(), newCustomer);
+
+        userLoader.setAllUsers(newMapUsers);
+        userLoader.setCustomers(newMapCustomers);
+    }
+
+    public void setAdminFunction(String pUsername, enums.Roles pUloga)
+    {
+        Collection<User> mUsers = getAllUserCollection();
+        Collection<Admin> mAdmins = userLoader.getAdmins().values();
+
+        for (User user : mUsers)
+        {
+            if (user.getUsername().equals(pUsername))
+                user.setUloga(pUloga);
+        }
+
+        for (Admin admin : mAdmins)
+        {
+            if (admin.getUsername().equals(pUsername))
+                admin.setUloga(pUloga);
+        }
+
+        HashMap<String, User> newMapUsers = new HashMap<>();
+        for (User newUser : mUsers)
+            newMapUsers.put(newUser.getUsername(), newUser);
+
+        HashMap<String, Admin> newMapAdmins = new HashMap<>();
+        for (Admin newAdmin : mAdmins)
+            newMapAdmins.put(newAdmin.getUsername(), newAdmin);
+
+        userLoader.setAllUsers(newMapUsers);
+        userLoader.setAdmins(newMapAdmins);
+    }
+
+    public void setDelivererFunction(String pUsername, enums.Roles pUloga)
+    {
+        Collection<User> mUsers = getAllUserCollection();
+        HashMap<String, Deliverer> newMapDeliverers = new HashMap<>();
+
+        enums.Roles oldRole = null;
+
+        for (User user : mUsers)
+        {
+            if (user.getUsername().equals(pUsername)) {
+                oldRole = user.getUloga();
+                user.setUloga(pUloga);
+            }
+        }
+
+        for (User newUser : mUsers)
+        {
+            if (newUser.getUloga().equals(enums.Roles.DOSTAVLJAC))
+            {
+                if (oldRole != null) {
+                    if (oldRole.equals(enums.Roles.KUPAC))
+                    {
+                        userLoader.getCustomers().remove(pUsername);
+                    }
+                    else if (oldRole.equals(enums.Roles.ADMINISTRATOR))
+                    {
+                        userLoader.getAdmins().remove(pUsername);
+                    }
+
+                    newMapDeliverers.put(newUser.getUsername(), new Deliverer(newUser));
+                }
+            }
+        }
+
+        userLoader.setDeliverers(newMapDeliverers);
+    }
 }

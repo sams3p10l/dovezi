@@ -1,6 +1,7 @@
 package com.example.dovezi2.func;
 
 import com.example.dovezi2.dao.UserDAO;
+import com.example.dovezi2.model_classes.enums;
 import com.example.dovezi2.user_classes.User;
 
 import javax.servlet.*;
@@ -12,6 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import static com.example.dovezi2.user_classes.User.string2role;
 
 @Path("user")
 public class UserService
@@ -145,5 +148,67 @@ public class UserService
     public Response getAllDeliverers()
     {
         return Response.status(200).entity(UserDAO.getUserLoader().getDeliverers()).build();
+    }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("customers/customer={username}")
+    public Response setCustomerFunction(@PathParam("username")String ppUsername, String ppNewRole)
+    {
+        HttpSession session = request.getSession();
+        User loggedUser = (User) session.getAttribute("user_logged_in");
+
+        if (loggedUser != null && loggedUser.getUloga().equals(enums.Roles.ADMINISTRATOR))
+        {
+            userDAO.setCustomerFunction(ppUsername, string2role(ppNewRole));
+            userDAO.saveUsers();
+            userDAO.loadUsers();
+            return Response.status(200).entity("Funkcija izmenjena").build();
+        }
+
+        return Response.status(200).entity("Neuspesna izmena").build();
+    }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("admins/admin={username}")
+    public Response setAdminFunction(@PathParam("username")String ppUsername, String ppNewRole)
+    {
+        HttpSession session = request.getSession();
+        User loggedUser = (User) session.getAttribute("user_logged_in");
+
+        if (loggedUser != null && loggedUser.getUloga().equals(enums.Roles.ADMINISTRATOR))
+        {
+            userDAO.setAdminFunction(ppUsername, string2role(ppNewRole));
+            userDAO.saveUsers();
+            userDAO.loadUsers();
+            return Response.status(200).entity("Funkcija izmenjena").build();
+        }
+
+        return Response.status(200).entity("Neuspesna izmena").build();
+    }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("deliverers/deliverer={username}")
+    public Response setDelivererFunction(@PathParam("username")String ppUsername, String ppNewRole)
+    {
+        HttpSession session = request.getSession();
+        User loggedUser = (User) session.getAttribute("user_logged_in");
+
+        if (loggedUser != null && loggedUser.getUloga().equals(enums.Roles.ADMINISTRATOR))
+        {
+            userDAO.setDelivererFunction(ppUsername, string2role(ppNewRole));
+            userDAO.saveUsers();
+            userDAO.loadUsers();
+            return Response.status(200).header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
+                    .entity("Funkcija izmenjena").build();
+        }
+
+        return Response.status(200).entity("Neuspesna izmena").build();
     }
 }

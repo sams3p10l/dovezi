@@ -147,7 +147,7 @@ public class UserSaver
 
     private void saveDeliverersJson()
     {
-        try(FileWriter fileDeliverers = new FileWriter(path + "../../data/deliverers.json"))
+        try(FileWriter fileDeliverers = new FileWriter(path + "../../data/deliverer.json"))
         {
             fileDeliverers.write(String.valueOf(deliverersJson.toString()));
         } catch (IOException e) {

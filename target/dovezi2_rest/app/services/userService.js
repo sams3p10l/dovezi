@@ -11,6 +11,9 @@ dovezi2.factory('userService', function ($http) {
     service.getCustomers = getCustomers;
     service.getAdmins = getAdmins;
     service.getDeliverers = getDeliverers;
+    service.setCustomerFunction = setCustomerFunction;
+    service.setAdminFunction = setAdminFunction;
+    service.setDelivererFunction = setDelivererFunction;
 
     return service;
 
@@ -52,5 +55,17 @@ dovezi2.factory('userService', function ($http) {
 
     function getDeliverers() {
         return $http.get('/dovezi2_rest_war_exploded/webapi/user/deliverers');
+    }
+
+    function setCustomerFunction(newRole, username) {
+        return $http.put('/dovezi2_rest_war_exploded/webapi/user/customers/customer=' + username, newRole);
+    }
+
+    function setAdminFunction(newRole, username) {
+        return $http.put('/dovezi2_rest_war_exploded/webapi/user/admins/admin=' + username, newRole);
+    }
+
+    function setDelivererFunction(newRole, username) {
+        return $http.put('/dovezi2_rest_war_exploded/webapi/user/deliverers/deliverer=' + username, newRole);
     }
 });

@@ -54,7 +54,7 @@ public class User
         this.regDate = date;
     }
 
-    public Roles string2role(String uloga)
+    public static Roles string2role(String uloga)
     {
         if (uloga.equals("KUPAC") || uloga.equals("DOSTAVLJAC") || uloga.equals("ADMINISTRATOR"))
         {

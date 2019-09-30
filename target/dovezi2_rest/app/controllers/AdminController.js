@@ -32,20 +32,20 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
         });
     };
 
-    $scope.getUsers = function (user) {
-        if(user === 'ADMINISTRATOR'){
+    $scope.getUsers = function (pUser) {
+        if(pUser === 'ADMINISTRATOR'){
             userService.getAdmins().success(function (data) {
                 $scope.korisnici = data;
                 $scope.showUsersFlag = true;
             });
         }
-        else if (user === 'KUPAC'){
+        else if (pUser === 'KUPAC'){
             userService.getCustomers().success(function (data) {
                 $scope.korisnici = data;
                 $scope.showUsersFlag = true;
             });
         }
-        else if (user === 'DOSTAVLJAC'){
+        else if (pUser === 'DOSTAVLJAC'){
             userService.getDeliverers().success(function (data) {
                 $scope.korisnici = data;
                 $scope.showUsersFlag = true;
@@ -58,6 +58,32 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
         $scope.showRestaurantsFlag = false;
         $scope.showVehiclesFlag = false;
         $scope.showDataFlag = false;
+    };
+
+    $scope.modalEditUser = function (pUser) {
+        $scope.func = pUser.uloga;
+        $scope.korisnik = pUser;
+    };
+
+    $scope.editUser = function (pUser) {
+        pUser.uloga = $scope.func;
+        $scope.username = pUser.username;
+
+        if (pUser.uloga === "ADMINISTRATOR"){
+            userService.setAdminFunction(pUser.uloga, pUser.username).success(function (data) {
+                $scope.showUsersFlag = true;
+            })
+        }
+        else if (pUser.uloga === "KUPAC"){
+            userService.setCustomerFunction(pUser.uloga, pUser.username).success(function (data) {
+                $scope.showUsersFlag = true;
+            })
+        }
+        else if (pUser.uloga === "DOSTAVLJAC"){
+            userService.setDelivererFunction(pUser.uloga, pUser.username).success(function (data) {
+                $scope.showUsersFlag = true;
+            })
+        }
     };
 
 });

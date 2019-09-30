@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Deliverer extends User
 {
-    private enums.Vehicles vozilo;
+    private enums.Vehicles vozilo = enums.Vehicles.PESAK;
     private ArrayList<String> allocatedOrders;
 
     public Deliverer()
@@ -17,6 +17,7 @@ public class Deliverer extends User
         super(parentUser.getUsername(), parentUser.getPassword(), parentUser.getName(),
                 parentUser.getSurname(), parentUser.getPhone(), parentUser.getEmail());
         this.allocatedOrders = new ArrayList<>();
+        this.vozilo = enums.Vehicles.PESAK;
         this.setUloga(enums.Roles.DOSTAVLJAC);
     }
 
@@ -31,14 +32,16 @@ public class Deliverer extends User
 
     private enums.Vehicles string2vehicle(String uloga)
     {
-        if (uloga.equals("BICIKL") || uloga.equals("SKUTER") || uloga.equals("AUTOMOBIL"))
+        if (uloga.equals("BICIKL") || uloga.equals("SKUTER") || uloga.equals("AUTOMOBIL") || uloga.equals("PESAK"))
         {
             if (uloga.equals("BICIKL"))
                 return enums.Vehicles.BICIKL;
             if (uloga.equals("SKUTER"))
                 return enums.Vehicles.SKUTER;
+            if (uloga.equals("AUTOMOBIL"))
+                return enums.Vehicles.AUTOMOBIL;
 
-            return enums.Vehicles.AUTOMOBIL;
+            return enums.Vehicles.PESAK;
         }
 
         return null;
