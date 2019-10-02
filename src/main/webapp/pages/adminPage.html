@@ -6,7 +6,7 @@
 
         <ul class="nav navbar-nav">
             <li class="nav-link"><a href="" ng-click="showUsers()">Korisnici</a></li>
-            <li class="nav-link"><a href="" ng-click="">Restorani</a></li>
+            <li class="nav-link"><a href="" ng-click="showRestaurants()">Restorani</a></li>
             <li class="nav-link"><a href="" ng-click="">Vozila</a></li>
         </ul>
 
@@ -135,6 +135,9 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <hr>
+                </div>
             </div>
         </div>
     </div>
@@ -159,6 +162,130 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="button" style="width: 100px" ng-click="editUser(korisnik)" class="btn btn-danger" data-dismiss="modal">Izmeni</button>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-show="showRestaurantsFlag">
+    <div class="row">
+        <div class="col-md-3">
+            <div style="margin-top: 70px;" class="container">
+                <form class="form-horizontal" name="restaurantForm">
+                    <div class="form-group">
+                        <h2>Dodavanje restorana</h2>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-1" for="textName">Ime:</label>
+                        <div class="col-md-2">
+                            <input type="text" style="width: 200px" id="textName" ng-model="restaurantAdd.naziv" ng-required="true" class="form-control" placeholder="Unesite ime">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-1" for="textAddress">Adresa:</label>
+                        <div class="col-md-2">
+                            <input type="text" style="width: 200px" id="textAddress" ng-model="restaurantAdd.adresa" ng-required="true" class="form-control" placeholder="Unesite adresu">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-1" for="textCategory">Kategorija:</label>
+                        <div class="col-md-2">
+                            <select style="width: 200px" id="textCategory" ng-model="restaurantAdd.kategorija" ng-options="value for value in categories"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-1">
+                            <button class="btn btn-primary" style="margin-left: 40px; margin-top: 5px; width: 100px" type="button" ng-click="addRestaurant(restaurantAdd)">Potvrdi</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-8" style="margin-top: 70px">
+            <div ng-repeat="restaurant in restaurants">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>{{restaurant.naziv}}</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <label>Adresa: </label> <label>{{restaurant.adresa}}</label>
+                                </div>
+                                <div>
+                                    <label>Kategorija: </label> <label>{{restaurant.kategorija}}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    <button type="button" style="height: 62px" class="btn btn-primary" ng-click="showMenu(restaurant)" data-toggle="modal"
+                                            data-target="#modalMeni">Jelovnik</button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    <button type="button" class="btn btn-primary" ng-click="modalEditRestaurant(restaurant)" data-toggle="modal" data-target="#modalEditRestaurant">Izmeni restoran</button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    <button type="button" class="btn btn-danger" ng-click="modalDeleteRestaurant(restaurant)" data-toggle="modal" data-target="#modalDeleteRestaurant">Obrisi restoran</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div id="modalEditRestaurant" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Izmena restorana: {{restaurantEdit.naziv}} </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" name="restaurantEditForm">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-md-offset-1" for="editNaziv">Ime:</label>
+                                    <div class="col-md-6">
+                                        <input style="width: 430px" type="text" id="editNaziv" ng-model="restaurantEdit.naziv" ng-required="true" class="form-control" placeholder="Unesite ime">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-md-offset-1" for="editAdresa">Adresa:</label>
+                                    <div class="col-md-6">
+                                        <input style="width: 430px" type="text" id="editAdresa" ng-model="restaurantEdit.adresa" ng-required="true" class="form-control" placeholder="Unesite adresu">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-md-offset-1" for="editKategorija">Kategorija:</label>
+                                    <div class="col-md-6">
+                                        <select style="width: 430px" id="editKategorija" ng-model="restaurantEdit.kategorija" ng-options="valueModal for valueModal in categoriesModal"></select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button style="width: 100px"type="button" ng-click="editRestaurant(oldId, restaurant)" class="btn btn-danger" data-dismiss="modal">Izmeni</button>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>

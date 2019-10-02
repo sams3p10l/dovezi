@@ -7,6 +7,7 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     }
 
     $scope.categories = ['DOMACA_KUHINJA', 'ROSTILJ','KINESKI_RESTORAN','INDIJSKI_RESTORAN','POSLASTICARNICA','PICERIJA'];
+    $scope.categoriesModal = ['DOMACA_KUHINJA', 'ROSTILJ','KINESKI_RESTORAN','INDIJSKI_RESTORAN','POSLASTICARNICA','PICERIJA'];
     $scope.users =['ADMINISTRATOR','KUPAC','DOSTAVLJAC'];
     $scope.vehicles = ['BICIKL', 'AUTOMOBIL', 'SKUTER'];
     $scope.itemTypes = ['HRANA', 'PICE'];
@@ -22,6 +23,27 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     $scope.username = '';
 
     initUser();
+
+    $scope.restaurant = {
+        naziv: '',
+        adresa: '',
+        kategorija: '',
+        id: ''
+    };
+
+    $scope.restaurantAdd = {
+        naziv: '',
+        adresa: '',
+        kategorija: '',
+        id: ''
+    };
+
+    $scope.restaurantEdit = {
+        naziv: '',
+        adresa: '',
+        kategorija: '',
+        id: ''
+    };
 
     $scope.personalData = function () {
         userService.getLoggedUser().success(function () {
@@ -60,6 +82,17 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
         $scope.showDataFlag = false;
     };
 
+    $scope.showRestaurants = function() {
+        $scope.showUsersFlag = false;
+        $scope.showRestaurantsFlag = true;
+        $scope.showVehiclesFlag = false;
+        $scope.showDataFlag = false;
+
+        restaurantService.getAllRestaurants().success(function (data) {
+            $scope.restaurants = data;
+        })
+    };
+
     $scope.modalEditUser = function (pUser) {
         $scope.func = pUser.uloga;
         $scope.korisnik = pUser;
@@ -84,6 +117,27 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
                 $scope.showUsersFlag = true;
             })
         }
+    };
+
+    $scope.addRestaurant = function (rest) {
+
+    };
+
+    $scope.showMenu = function (rest) {
+
+    };
+
+    $scope.modalEditRestaurant = function (rest) {
+        $scope.oldId = rest.id;
+        $scope.restaurantEdit = rest;
+    };
+
+    $scope.modalDeleteRestaurant = function (rest) {
+
+    };
+
+    $scope.editRestaurant = function (id, rest) {
+
     };
 
 });
