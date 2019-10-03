@@ -19,6 +19,14 @@ public class RestaurantDAO
     private ItemSaver itemSaver = new ItemSaver();
     private ItemLoader itemLoader = new ItemLoader();
 
+    public RestaurantDAO() {
+        try {
+            loadRestaurants();
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Collection<Restaurant> getAllRestaurants()
     {
         ArrayList<Restaurant> retVal = new ArrayList<>();
@@ -87,4 +95,9 @@ public class RestaurantDAO
         itemLoader.loadItems();
     }
 
+    public void addNewRestaurant(Restaurant pRest)
+    {
+        if (pRest != null)
+            restaurantLoader.getAllRestaurants().put(pRest.getId(), pRest);
+    }
 }

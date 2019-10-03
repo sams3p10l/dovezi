@@ -120,7 +120,9 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     };
 
     $scope.addRestaurant = function (rest) {
-
+        restaurantService.addRestaurant(rest).success(function (data) {
+            alert(data);
+        });
     };
 
     $scope.showMenu = function (rest) {

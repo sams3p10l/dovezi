@@ -18,5 +18,17 @@ dovezi2.factory('restaurantService', function ($http) {
         return $http.get('/dovezi2_rest_war_exploded/webapi/restaurants/restorani/adresa=' + adr);
     };
 
+    restService.addRestaurant = function (rest) {
+        return $http.post('/dovezi2_rest_war_exploded/webapi/restaurants/add', rest);
+    };
+
+    restService.deleteRestaurant = function (rest) {
+
+    };
+
+    restService.editRestaurant = function (id, rest) {
+
+    };
+
     return restService;
 });
