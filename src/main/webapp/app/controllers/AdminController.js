@@ -133,10 +133,14 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     };
 
     $scope.modalDeleteRestaurant = function (rest) {
-
+        $scope.restaurant = rest;
     };
 
     $scope.editRestaurant = function (id, rest) {
+
+    };
+
+    $scope.deleteRestaurant = function (rest) {
 
     };
 

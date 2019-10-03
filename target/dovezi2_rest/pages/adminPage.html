@@ -297,4 +297,33 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div id="modalDeleteRestaurant" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Brisanje restorana: {{restaurant.naziv}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Da li ste sigurni da želite da izbrišete restoran: {{restaurant.naziv}} ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button style="width: 100px" type="button" ng-click="deleteRestaurant(restaurant)"
+                                            class="btn btn-danger" data-dismiss="modal">Obrisi</button>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Odustani</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
