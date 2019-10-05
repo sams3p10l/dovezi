@@ -89,4 +89,9 @@ public class RestaurantSaver
             e.printStackTrace();
         }
     }
+
+    public void setRestaurants(Collection<Restaurant> restaurants)
+    {
+        this.restaurants = restaurants;
+    }
 }

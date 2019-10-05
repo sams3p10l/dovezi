@@ -86,4 +86,54 @@ public class RestaurantService
 
         return Response.status(200).entity("Neuspesno dodavanje").build();
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/delete={id}")
+    public Response deleteRestaurant(@PathParam("id")String restID)
+    {
+        HttpSession sesh = request.getSession();
+        User loggedUser = (User) sesh.getAttribute("user_logged_in");
+
+        if (loggedUser != null && loggedUser.getUloga().equals(enums.Roles.ADMINISTRATOR))
+        {
+                restaurantDAO.deleteRestaurant(restID);
+                restaurantDAO.saveRestaurants();
+                try {
+                    restaurantDAO.loadRestaurants();
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return Response.status(200).entity("Restoran izbrisan").build();
+        }
+
+        return Response.status(200).entity("Greska u brisanju").build();
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/edit={id}")
+    public Response editRestaurant(@PathParam("id")String pid, Restaurant rest)
+    {
+        HttpSession sesh = request.getSession();
+        User loggedUser = (User) sesh.getAttribute("user_logged_in");
+
+        if (loggedUser != null && loggedUser.getUloga().equals(enums.Roles.ADMINISTRATOR))
+        {
+            Restaurant updated = new Restaurant(rest.getNaziv(), rest.getAdresa(), rest.getKategorija(), rest.getMealList(), rest.getDrinkList());
+
+            restaurantDAO.editRestaurant(pid, updated);
+            restaurantDAO.saveRestaurants();
+            try {
+                restaurantDAO.loadRestaurants();
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+            return Response.status(200).entity("Restoran azuriran").build();
+        }
+
+        return Response.status(200).entity("Greska prilikom azuriranja").build();
+    }
 }

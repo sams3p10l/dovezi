@@ -138,12 +138,16 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
         $scope.restaurant = rest;
     };
 
-    $scope.editRestaurant = function (id, rest) {
-
+    $scope.editRestaurant0 = function (id) {
+                restaurantService.editRestaurant(id, $scope.restaurantEdit).success(function (data) {
+            alert(data);
+        });
     };
 
-    $scope.deleteRestaurant = function (rest) {
-
+    $scope.deleteRestaurant = function (id) {
+        restaurantService.deleteRestaurant(id).success(function (data) {
+            alert(data);
+        });
     };
 
 });

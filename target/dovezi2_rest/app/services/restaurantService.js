@@ -22,12 +22,12 @@ dovezi2.factory('restaurantService', function ($http) {
         return $http.post('/dovezi2_rest_war_exploded/webapi/restaurants/add', rest);
     };
 
-    restService.deleteRestaurant = function (rest) {
-
+    restService.deleteRestaurant = function (id) {
+        return $http.put('/dovezi2_rest_war_exploded/webapi/restaurants/delete=' + id);
     };
 
     restService.editRestaurant = function (id, rest) {
-
+        return $http.put('/dovezi2_rest_war_exploded/webapi/restaurants/edit=' + id, rest);
     };
 
     return restService;

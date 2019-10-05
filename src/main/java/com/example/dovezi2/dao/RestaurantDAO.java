@@ -98,6 +98,16 @@ public class RestaurantDAO
     public void addNewRestaurant(Restaurant pRest)
     {
         if (pRest != null)
-            restaurantLoader.getAllRestaurants().put(pRest.getId(), pRest);
+            restaurantLoader.getAllRestaurants().put(pRest.getId(), new Restaurant(pRest.getNaziv(), pRest.getAdresa(), pRest.getKategorija()));
+    }
+
+    public void deleteRestaurant(String restID)
+    {
+        restaurantLoader.getAllRestaurants().remove(restID);
+    }
+
+    public void editRestaurant(String pid, Restaurant updated)
+    {
+        restaurantLoader.getAllRestaurants().replace(pid, updated);
     }
 }

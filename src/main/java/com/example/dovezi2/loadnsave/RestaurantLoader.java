@@ -62,7 +62,7 @@ public class RestaurantLoader
             //boolean delete = (boolean)jsonObject.get("delete");
 
             Restaurant newRestaurant = new Restaurant(name, address, category, foodList, drinkList);
-            allRestaurants.put(newRestaurant.getNaziv(), newRestaurant);
+            allRestaurants.put(newRestaurant.getId(), newRestaurant);
 
         }
     }

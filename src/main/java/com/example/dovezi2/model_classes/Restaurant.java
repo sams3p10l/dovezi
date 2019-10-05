@@ -20,6 +20,17 @@ public class Restaurant
         this.mealList = new ArrayList<>();
     }
 
+    public Restaurant(String naziv, String adresa, enums.Categories kategorija)
+    {
+        this.naziv = naziv;
+        this.adresa = adresa;
+        this.kategorija = kategorija;
+        this.drinkList = new ArrayList<>();
+        this.mealList = new ArrayList<>();
+        this.id = naziv + adresa;
+        this.id = this.id.toUpperCase().replace(' ', '-');
+    }
+
     public Restaurant(String naziv, String adresa, enums.Categories kategorija, ArrayList<String> mealList, ArrayList<String> drinkList)
     {
         this.naziv = naziv;
