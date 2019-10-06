@@ -1,6 +1,8 @@
 package com.example.dovezi2.func;
 
 import com.example.dovezi2.dao.RestaurantDAO;
+import com.example.dovezi2.model_classes.Drink;
+import com.example.dovezi2.model_classes.Meal;
 import com.example.dovezi2.model_classes.Restaurant;
 import com.example.dovezi2.model_classes.enums;
 import com.example.dovezi2.user_classes.User;
@@ -135,5 +137,21 @@ public class RestaurantService
         }
 
         return Response.status(200).entity("Greska prilikom azuriranja").build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/restorani/{ime}/drinks")
+    public Collection<Drink> getDrinks(@PathParam("ime")String pIme)
+    {
+        return restaurantDAO.getDrinks(pIme);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/restorani/{ime}/meals")
+    public Collection<Meal> getMeals(@PathParam("ime")String pIme)
+    {
+        return restaurantDAO.getMeals(pIme);
     }
 }

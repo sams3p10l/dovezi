@@ -4,6 +4,8 @@ import com.example.dovezi2.loadnsave.ItemLoader;
 import com.example.dovezi2.loadnsave.ItemSaver;
 import com.example.dovezi2.loadnsave.RestaurantLoader;
 import com.example.dovezi2.loadnsave.RestaurantSaver;
+import com.example.dovezi2.model_classes.Drink;
+import com.example.dovezi2.model_classes.Meal;
 import com.example.dovezi2.model_classes.Restaurant;
 import org.json.simple.parser.ParseException;
 
@@ -109,5 +111,31 @@ public class RestaurantDAO
     public void editRestaurant(String pid, Restaurant updated)
     {
         restaurantLoader.getAllRestaurants().replace(pid, updated);
+    }
+
+    public Collection<Drink> getDrinks(String restName)
+    {
+        Collection<Drink> retVal = new ArrayList<>();
+
+        for (Drink drink : itemLoader.getAllDrinks().values())
+        {
+            if (drink.getRestoran().equals(restName))
+                retVal.add(drink);
+        }
+
+        return retVal;
+    }
+
+    public Collection<Meal> getMeals(String restName)
+    {
+        Collection<Meal> retVal = new ArrayList<>();
+
+        for (Meal meal : itemLoader.getAllMeals().values())
+        {
+            if (meal.getRestoran().equals(restName))
+                retVal.add(meal);
+        }
+
+        return retVal;
     }
 }

@@ -45,6 +45,14 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
         id: ''
     };
 
+    $scope.newItem = {
+        naziv: '',
+        opis: '',
+        cena: '',
+        kolicina: '',
+        type: ''
+    };
+
     $scope.personalData = function () {
         userService.getLoggedUser().success(function () {
             $scope.showDataFlag = true;
@@ -126,7 +134,8 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     };
 
     $scope.showMenu = function (rest) {
-
+        getDrinks(rest.naziv);
+        getFoods(rest.naziv);
     };
 
     $scope.modalEditRestaurant = function (rest) {
@@ -139,7 +148,7 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     };
 
     $scope.editRestaurant0 = function (id) {
-                restaurantService.editRestaurant(id, $scope.restaurantEdit).success(function (data) {
+        restaurantService.editRestaurant(id, $scope.restaurantEdit).success(function (data) {
             alert(data);
         });
     };
@@ -148,6 +157,22 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
         restaurantService.deleteRestaurant(id).success(function (data) {
             alert(data);
         });
+    };
+
+    function getDrinks(name) {
+        restaurantService.getDrinks(name).success(function (data) {
+            $scope.drinks = data;
+        })
+    }
+
+    function getFoods(name) {
+        restaurantService.getFoods(name).success(function (data) {
+            $scope.foods = data;
+        })
+    }
+
+    $scope.addItem = function (item) {
+
     };
 
 });

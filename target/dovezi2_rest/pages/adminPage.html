@@ -326,4 +326,148 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div id="modalMeni" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Jelovnik restorana {{restaurant.naziv}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div ng-repeat="food in foods">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div>
+                                                    <label>Ime: </label> <label>{{food.naziv}}</label>
+                                                </div>
+                                                <div>
+                                                    <label>Cena: </label> <label>{{food.cena}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div>
+                                                    <label>Opis: </label> <label>{{food.opis}}</label>
+                                                </div>
+                                                <div>
+                                                    <label>Kolicina: </label> <label>{{food.kolicina}}g</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-primary" ng-click="modalEditMeal(food)" data-toggle="modal" data-target="#modelEditMeal">Izmena jela</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-danger" ng-click="deleteMeal(food)" data-toggle="modal" data-target="#modalDeleteMeal">Brisanje jela</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                            <div ng-repeat="drink in drinks">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div>
+                                                    <label>Ime: </label> <label>{{drink.naziv}}</label>
+                                                </div>
+                                                <div>
+                                                    <label>Cena: </label> <label>{{drink.cena}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div>
+                                                    <label>Opis: </label> <label>{{drink.opis}}</label>
+                                                </div>
+                                                <div>
+                                                    <label>Kolicina: </label> <label>{{drink.kolicina}}ml</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-primary" ng-click="modalEditDrink(drink)" data-toggle="modal" data-target="#modelEditDrink">Izmena pica</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-danger" ng-click="deleteDrink(drink)" data-toggle="modal" data-target="#modalDeleteDrink">Brisanje pica</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#modalAddItem">Dodavanje artikla</button>
+                                </div>
+                                <div class="col-md-1">
+                                    <button style="height: 62px" type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div id="modalAddItem" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Dodavanje artikla</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" name="itemForm">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-md-offset-1" for="inputName">Ime:</label>
+                                    <input id="inputName" type="text" ng-model="newItem.naziv" ng-required="true" class="form-control" placeholder="Unesite ime">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-md-offset-1" for="inputPrice">Cena:</label>
+                                    <input id="inputPrice" type="text" ng-model="newItem.cena" ng-required="true" class="form-control" placeholder="Unesite cenu">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-md-offset-1" for="inputDesc">Opis:</label>
+                                    <input id="inputDesc" type="text" ng-model="newItem.opis" ng-required="true" class="form-control" placeholder="Unesite opis">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-md-offset-1" for="inputQuantity">Količina:</label>
+                                    <input id="inputQuantity" type="text" ng-model="newItem.kolicina" ng-required="true" class="form-control" placeholder="Unesite količinu">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-md-offset-1" for="selectType">Tip artikla:</label>
+                                    <select id="selectType" class="form-control" ng-model="newItem.type" ng-options="value for value in itemTypes"></select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button style="width: 100px" type="button" ng-click="addItem(newItem)" class="btn btn-primary" data-dismiss="modal">Dodaj</button>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

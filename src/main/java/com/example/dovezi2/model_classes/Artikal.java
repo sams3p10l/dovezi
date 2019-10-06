@@ -3,6 +3,7 @@ package com.example.dovezi2.model_classes;
 public abstract class Artikal
 {
     private String id;
+    private String restoran;
     private String naziv;
     private double cena;
     private String opis;
@@ -18,12 +19,13 @@ public abstract class Artikal
         this.kolicina = 0;
     }
 
-    public Artikal(String naziv, double cena, String opis, int kolicina)
+    public Artikal(String naziv, double cena, String opis, int kolicina, String restoran)
     {
         this.naziv = naziv;
         this.cena = cena;
         this.opis = opis;
         this.kolicina = kolicina;
+        this.restoran = restoran;
         this.id = naziv + opis;
         this.id = this.id.toUpperCase().replace(" ", "-");
     }
@@ -89,4 +91,9 @@ public abstract class Artikal
     }
 
     abstract String printKolicina();
+
+    public String getRestoran()
+    {
+        return restoran;
+    }
 }

@@ -30,5 +30,13 @@ dovezi2.factory('restaurantService', function ($http) {
         return $http.put('/dovezi2_rest_war_exploded/webapi/restaurants/edit=' + id, rest);
     };
 
+    restService.getFoods = function (name) {
+        return $http.get('/dovezi2_rest_war_exploded/webapi/restaurants/restorani/' + name + '/meals');
+    };
+
+    restService.getDrinks = function (name) {
+        return $http.get('/dovezi2_rest_war_exploded/webapi/restaurants/restorani/' + name + '/drinks');
+    };
+
     return restService;
 });
