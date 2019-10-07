@@ -17,6 +17,7 @@ public abstract class Artikal
         this.cena = 0.0;
         this.opis = "";
         this.kolicina = 0;
+        this.restoran = "KURAC";
     }
 
     public Artikal(String naziv, double cena, String opis, int kolicina, String restoran)
@@ -95,5 +96,10 @@ public abstract class Artikal
     public String getRestoran()
     {
         return restoran;
+    }
+
+    public void setRestoran(String restoran)
+    {
+        this.restoran = restoran;
     }
 }

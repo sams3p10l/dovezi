@@ -50,7 +50,8 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
         opis: '',
         cena: '',
         kolicina: '',
-        type: ''
+        type: '',
+        restoran: ''
     };
 
     $scope.personalData = function () {
@@ -136,6 +137,7 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
     $scope.showMenu = function (rest) {
         getDrinks(rest.naziv);
         getFoods(rest.naziv);
+        $scope.newItem.restoran = rest.naziv;
     };
 
     $scope.modalEditRestaurant = function (rest) {
@@ -171,8 +173,14 @@ dovezi2.controller('AdminController', function ($scope, $window, userService, re
         })
     }
 
-    $scope.addItem = function (item) {
-
+    $scope.addArtikal = function (item) {
+        if (item.type === "HRANA") {
+            restaurantService.addMeal(item).success(function (data) {
+            });
+        }
+        else if (item.type === "PICE")
+            restaurantService.addDrink(item).success(function (data) {
+            });
     };
 
 });

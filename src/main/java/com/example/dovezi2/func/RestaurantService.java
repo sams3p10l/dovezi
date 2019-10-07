@@ -1,10 +1,7 @@
 package com.example.dovezi2.func;
 
 import com.example.dovezi2.dao.RestaurantDAO;
-import com.example.dovezi2.model_classes.Drink;
-import com.example.dovezi2.model_classes.Meal;
-import com.example.dovezi2.model_classes.Restaurant;
-import com.example.dovezi2.model_classes.enums;
+import com.example.dovezi2.model_classes.*;
 import com.example.dovezi2.user_classes.User;
 import org.json.simple.parser.ParseException;
 
@@ -18,7 +15,6 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Collection;
 
-import static com.example.dovezi2.user_classes.User.string2role;
 
 @Path("restaurants")
 public class RestaurantService
@@ -153,5 +149,56 @@ public class RestaurantService
     public Collection<Meal> getMeals(@PathParam("ime")String pIme)
     {
         return restaurantDAO.getMeals(pIme);
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("restorani/addMeal")
+    public Response addMeal(Meal pItem)
+    {
+        HttpSession sesh = request.getSession();
+        User loggedUser = (User) sesh.getAttribute("user_logged_in");
+
+        if (loggedUser != null && loggedUser.getUloga().equals(enums.Roles.ADMINISTRATOR))
+        {
+                Meal newMeal = new Meal(pItem.getNaziv(), pItem.getCena(), pItem.getOpis(), pItem.getKolicina(), pItem.getRestoran());
+                restaurantDAO.addMeal(newMeal);
+                return refreshData();
+        }
+
+        return Response.status(200).entity("Greska prilikom dodavanja artikla").build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("restorani/addDrink")
+    public Response addDrink(Drink pItem)
+    {
+        HttpSession sesh = request.getSession();
+        User loggedUser = (User) sesh.getAttribute("user_logged_in");
+
+        if (loggedUser != null && loggedUser.getUloga().equals(enums.Roles.ADMINISTRATOR))
+        {
+            Drink newDrink = new Drink(pItem.getNaziv(), pItem.getCena(), pItem.getOpis(), pItem.getKolicina(), pItem.getRestoran());
+            restaurantDAO.addDrink(newDrink);
+            return refreshData();
+        }
+
+        return Response.status(200).entity("Greska prilikom dodavanja artikla").build();
+    }
+
+    private Response refreshData()
+    {
+        restaurantDAO.saveItems();
+        restaurantDAO.loadItems();
+        restaurantDAO.saveRestaurants();
+        try {
+            restaurantDAO.loadRestaurants();
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return Response.status(200).entity("Artikal dodat").build();
     }
 }

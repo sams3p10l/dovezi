@@ -32,6 +32,7 @@ public class ItemSaver
             newItem.put("price", String.valueOf(artikal.getCena()));
             newItem.put("description", artikal.getOpis());
             newItem.put("quantity", String.valueOf(artikal.getKolicina()));
+            newItem.put("restaurant", String.valueOf(artikal.getRestoran()));
 
             if(artikal.getType().equals(enums.ArtikalTypes.HRANA)){
                 newItem.put("typeOfItem", "HRANA");

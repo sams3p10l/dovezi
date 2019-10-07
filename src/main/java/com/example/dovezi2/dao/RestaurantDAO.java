@@ -138,4 +138,17 @@ public class RestaurantDAO
 
         return retVal;
     }
+
+    public void addMeal(Meal newMeal)
+    {
+        itemLoader.getAllItems().put(newMeal.getId(), newMeal);
+        itemLoader.getAllMeals().put(newMeal.getId(), newMeal);
+
+    }
+
+    public void addDrink(Drink newDrink)
+    {
+        itemLoader.getAllItems().put(newDrink.getId(), newDrink);
+        itemLoader.getAllDrinks().put(newDrink.getId(), newDrink);
+    }
 }
